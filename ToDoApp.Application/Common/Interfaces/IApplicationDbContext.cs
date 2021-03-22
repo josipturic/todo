@@ -10,7 +10,7 @@ namespace Application.Common.Interfaces
         DbSet<AppUser> AppUsers { get; set; }
         DbSet<Admin> Admins { get; set; }
         DbSet<ServiceProvider> ServiceProviders { get; set; }
-        DbSet<User> Users { get; set; }
+        DbSet<RegisteredUser> Users { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }

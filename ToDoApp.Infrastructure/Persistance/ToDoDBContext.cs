@@ -27,7 +27,7 @@ namespace Infrastructure.Persistence
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<RegisteredUser> Users { get; set; }
         public DbSet<ServiceProvider> ServiceProviders { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
