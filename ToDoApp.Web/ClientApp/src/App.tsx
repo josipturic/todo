@@ -1,22 +1,24 @@
-import React, { Component } from "react";
-import { Route } from "react-router";
+import React from "react";
+import { Router, Route, Switch } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
-import { FetchData } from "./components/FetchData";
-import { Counter } from "./components/Counter";
+import Login from "./components/App/Login";
 
 import "./custom.css";
+import { createBrowserHistory } from "history";
 
-export default class App extends Component {
-  static displayName = App.name;
+const history = createBrowserHistory();
 
-  render() {
-    return (
-      <Layout>
+const App = () => {
+  return (
+    <Router history={history}>
+      {/* Add store */}
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/counter" component={Counter} />
-        <Route path="/fetch-data" component={FetchData} />
-      </Layout>
-    );
-  }
-}
+        <Route exact path="/login" component={Login} />
+      </Switch>
+    </Router>
+  );
+};
+
+export default App;
