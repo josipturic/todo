@@ -11,6 +11,5 @@ namespace Domain.Entities
         {
             get => FirstName + " " + LastName;
         }
-        public string DateOfBirth { get; set; }
     }
 }
