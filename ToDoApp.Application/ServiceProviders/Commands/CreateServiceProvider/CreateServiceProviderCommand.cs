@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Application.ServiceProviders.Commands.CreateServiceProvider
+namespace Application.ServiceProviders.Commands.CreateServiceProvider
 {
     public class CreateServiceProviderCommand : IRequest<string>
     {

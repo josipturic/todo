@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ToDoApp.Application.ServiceProviders.Models;
+using Application.ServiceProviders.Models;
 
-namespace Application.PeopleInNeed.Queries.GetAllPeopleInNeed
+namespace Application.ServiceProviders.Queries.GetServiceProviders
 {
     public class GetServiceProvidersQuery : IRequest<IEnumerable<ServiceProviderModel>>
     {

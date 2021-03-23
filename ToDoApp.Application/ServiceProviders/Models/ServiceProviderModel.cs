@@ -2,7 +2,7 @@
 using Domain.Entities;
 using System.Collections.Generic;
 
-namespace ToDoApp.Application.ServiceProviders.Models
+namespace Application.ServiceProviders.Models
 {
     public class ServiceProviderModel : IMapFrom<ServiceProvider>
     {

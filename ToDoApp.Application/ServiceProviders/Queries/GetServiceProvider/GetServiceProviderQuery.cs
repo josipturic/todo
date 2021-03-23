@@ -3,10 +3,10 @@ using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using ToDoApp.Application.ServiceProviders.Models;
+using Application.ServiceProviders.Models;
 using Application.Extensions;
 
-namespace ToDoApp.Application.ServiceProviders.Queries.GetServiceProvider
+namespace Application.ServiceProviders.Queries.GetServiceProvider
 {
     public class GetServiceProviderQuery : IRequest<ServiceProviderModel>
     {
