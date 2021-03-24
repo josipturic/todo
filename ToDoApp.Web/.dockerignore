@@ -9,3 +9,6 @@ docker-compose.yml
 docker-compose.*.yml
 */bin
 */obj
+*/node_modules
+node_modules
+ClientApp/node_modules

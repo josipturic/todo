@@ -1,22 +1,15 @@
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
-// reactstrap components
-import { Container, Row, Col } from "reactstrap";
-
-// core components
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import { useLocation } from "react-router-dom";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import styles from "./login.module.scss";
+import { Avatar, Typography } from "@material-ui/core";
+import { Formik } from "formik";
+import TextInput from "./Common/TextInput";
+import * as Yup from "yup";
 
 const Login = (props) => {
-  const mainContent = React.useRef(null);
   const location = useLocation();
 
-  React.useEffect(() => {
-    document.body.classList.add("bg-default");
-    return () => {
-      document.body.classList.remove("bg-default");
-    };
-  }, []);
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
@@ -24,40 +17,73 @@ const Login = (props) => {
 
   return (
     <>
-      <div className="main-content" ref={mainContent}>
-        <NavBar />
-        <div className="header bg-gradient-info py-7 py-lg-8">
-          <Container>
-            <div className="header-body text-center mb-7">
-              <Row className="justify-content-center">
-                <Col lg="5" md="6">
-                  <h1 className="text-white">Welcome!</h1>
-                  <p className="text-lead text-light">
-                    Use these awesome forms to login or create new account in
-                    your project for free.
-                  </p>
-                </Col>
-              </Row>
-            </div>
-          </Container>
-          <div className="separator separator-bottom separator-skew zindex-100">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
+      <div className={styles.height}>
+        <div className={styles.outside}>
+          <div className={styles.container}>
+            <Avatar className={styles.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <h1>Login</h1>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              onSubmit={(values: any) =>
+                console.log(values.email + "" + values.password)
+              }
+              validationSchema={Yup.object().shape({
+                email: Yup.string().required("Obavezno"),
+                password: Yup.string().required("Obavezno"),
+              })}
             >
-              <polygon
-                className="fill-default"
-                points="2560 0 2560 100 0 100"
-              />
-            </svg>
+              {(props: any) => {
+                const {
+                  touched,
+                  errors,
+                  isSubmitting,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                } = props;
+                return (
+                  <form>
+                    <div className={styles.smallCont}>
+                      <TextInput
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        id="email"
+                        errors={errors}
+                        touched={touched}
+                        value={props.values && props.values.email}
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div className={styles.smallCont}>
+                      <TextInput
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        id="password"
+                        errors={errors}
+                        touched={touched}
+                        value={props.values && props.values.password}
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div className={styles.smallCont}>
+                      <button className={styles.loginButton}>Login</button>
+                    </div>
+                    <div className={styles.smallCont}>
+                      <span>Nemate račun? Registrirajte se</span>
+                    </div>
+                  </form>
+                );
+              }}
+            </Formik>
           </div>
+          <div className={styles.polygon}></div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

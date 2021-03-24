@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../../custom.module.scss";
 import {
   UncontrolledCollapse,
   NavbarBrand,
@@ -16,7 +17,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar
-        className="navbar-top navbar-horizontal navbar-dark"
+        className={styles.btnPrimary}
         expand="md"
         style={{
           background:

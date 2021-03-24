@@ -14,7 +14,7 @@ namespace Application.ServiceProviders.Queries.FilterServiceProviders
 {
     public class FilterServiceProvidersQuery : IRequest<IEnumerable<ServiceProviderModel>>
     {
-        public string CategoryId { get; set; }
+        public string MainCategoryId { get; set; }
         public string SubCategoryIds { get; set; }
 
         public class Handler : IRequestHandler<FilterServiceProvidersQuery, IEnumerable<ServiceProviderModel>>
@@ -30,7 +30,7 @@ namespace Application.ServiceProviders.Queries.FilterServiceProviders
 
             public async Task<IEnumerable<ServiceProviderModel>> Handle(FilterServiceProvidersQuery request, CancellationToken cancellationToken)
             {
-                var categoryId = int.Parse(request.CategoryId);
+                var categoryId = int.Parse(request.MainCategoryId);
                 var subcategoryIds = ServiceProviderHelper.ParseSubcategoryIds(request.SubCategoryIds);
 
                 var serviceProviders = await _context.ServiceProviders.Where(p => p.MainCategoryId == categoryId).

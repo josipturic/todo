@@ -6,6 +6,7 @@ import Login from "./components/App/Login";
 
 import "./custom.css";
 import { createBrowserHistory } from "history";
+import PublicRoute from "./components/Routes/PublicRoute";
 
 const history = createBrowserHistory();
 
@@ -15,7 +16,7 @@ const App = () => {
       {/* Add store */}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
+        <PublicRoute exact path="/login" component={Login} />
       </Switch>
     </Router>
   );

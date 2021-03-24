@@ -43,7 +43,7 @@ namespace ToDoApp.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ServiceProviderModel>>> FilterServiceProviders (string categoryId, string subcategoryIds)
         {
-            return Ok(await Mediator.Send(new FilterServiceProvidersQuery { CategoryId = categoryId, SubCategoryIds = subcategoryIds }));
+            return Ok(await Mediator.Send(new FilterServiceProvidersQuery { MainCategoryId = categoryId, SubCategoryIds = subcategoryIds }));
         }
     }
 }
