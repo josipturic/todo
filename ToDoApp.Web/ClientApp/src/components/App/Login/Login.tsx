@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import styles from "./login.module.scss";
-import { Avatar, Typography } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
-import TextInput from "./Common/TextInput";
+import TextInput from "../Common/TextInput";
 import * as Yup from "yup";
 
-const Login = (props) => {
+interface IProps {}
+
+const Login: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
   }, [location]);
@@ -81,7 +83,6 @@ const Login = (props) => {
               }}
             </Formik>
           </div>
-          <div className={styles.polygon}></div>
         </div>
       </div>
     </>

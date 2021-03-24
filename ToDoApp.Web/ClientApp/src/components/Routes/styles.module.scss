@@ -1,6 +1,5 @@
 .PublicBackground {
   min-height: 100%;
-  min-width: 100%;
 
   /* Set up proportionate scaling */
   width: 100%;
@@ -13,4 +12,46 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #1171ef;
+  background: -moz-linear-gradient(
+    left,
+    #14c0df 29%,
+    #1171ef 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #14c0df 29%,
+    #1171ef 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #14c0df 29%,
+    #1171ef 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.polygon {
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.877);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  clip-path: polygon(0 60%, 100% 35%, 100% 100%, 0% 100%);
+}
+
+@media only screen and (max-width: 450px) {
+  .polygon {
+    clip-path: polygon(0 55%, 100% 30%, 100% 100%, 0% 100%);
+  }
+
+  .container {
+    max-width: 350px;
+  }
 }

@@ -6,22 +6,7 @@ $enable-gradients: true;
 
 .outside {
   height: 100%;
-  background-color: #1171ef;
-  background: -moz-linear-gradient(
-    left,
-    #14c0df 29%,
-    #1171ef 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    left,
-    #14c0df 29%,
-    #1171ef 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to right,
-    #14c0df 29%,
-    #1171ef 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  margin-top: 26%;
 }
 
 .smallCont {
@@ -72,13 +57,6 @@ $enable-gradients: true;
   }
 }
 
-.polygon {
-  z-index: 0;
-  background-color: rgba(0, 0, 0, 0.877);
-  height: 100%;
-  clip-path: polygon(0 25%, 100% 8%, 100% 100%, 0% 100%);
-}
-
 .loginButton {
   margin-top: 15px;
   width: 100%;
@@ -107,14 +85,25 @@ $enable-gradients: true;
   background-color: rgba(0, 0, 0, 0.849);
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
   .container {
     max-width: 340px;
     h1 {
       font-size: 24px;
     }
   }
+
+  .outside {
+    margin-top: 46% !important;
+  }
+
   .polygon {
     clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@media only screen and (max-width: 1700px) {
+  .outside {
+    margin-top: 14%;
   }
 }

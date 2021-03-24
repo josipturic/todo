@@ -1,0 +1,46 @@
+.container {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  display: flex;
+  > div {
+    display: flex;
+  }
+
+  .firstDiv {
+    width: 30%;
+    svg {
+      margin-bottom: 4px;
+      margin-right: 6px;
+    }
+  }
+  .secondDiv {
+    justify-content: flex-end;
+    width: 70%;
+    svg {
+      margin-bottom: 4px;
+      margin-right: 6px;
+    }
+    > div {
+      max-width: 115px;
+      width: fit-content;
+    }
+  }
+
+  p {
+    display: inline-block;
+    font-weight: 500;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 450px) {
+  .secondDiv {
+    > div {
+      min-width: 140px;
+    }
+  }
+}

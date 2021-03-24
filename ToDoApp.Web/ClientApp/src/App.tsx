@@ -1,22 +1,21 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
-import Login from "./components/App/Login";
-
+import Login from "./components/App/Login/Login";
+import Register from "./components/App/Register/Register";
 import "./custom.css";
-import { createBrowserHistory } from "history";
 import PublicRoute from "./components/Routes/PublicRoute";
-
-const history = createBrowserHistory();
+import { CLIENT } from "./constants/appRoutes";
+import history from "./constants/history";
 
 const App = () => {
   return (
     <Router history={history}>
       {/* Add store */}
       <Switch>
-        <Route exact path="/" component={Home} />
-        <PublicRoute exact path="/login" component={Login} />
+        <PublicRoute exact path="/" component={Home} />
+        <PublicRoute exact path={CLIENT.APP.LOGIN} component={Login} />
+        <PublicRoute exact path={CLIENT.APP.REGISTER} component={Register} />
       </Switch>
     </Router>
   );

@@ -1,0 +1,103 @@
+$enable-gradients: true;
+
+.height {
+  height: 100%;
+}
+
+.outside {
+  height: 100%;
+  margin-top: 26%;
+}
+
+.smallCont {
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 80%;
+
+  input {
+    height: 35px !important;
+  }
+
+  span {
+    color: rgb(0, 0, 161);
+    cursor: pointer;
+  }
+
+  span:hover {
+    color: rgb(0, 0, 126);
+    text-decoration: underline;
+  }
+}
+
+.avatar {
+  background-color: #f50057 !important;
+  position: relative;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.container {
+  background-color: white;
+  max-width: 407px;
+  position: relative;
+  top: 25%;
+  margin: auto;
+  z-index: 1;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.loginButton {
+  margin-top: 15px;
+  width: 100%;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.877);
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(129, 129, 129, 0.75);
+  -moz-box-shadow: 1px 1px 2px 0px rgba(129, 129, 129, 0.75);
+  box-shadow: 1px 1px 2px 0px rgba(129, 129, 129, 0.75);
+  border: 1px solid transparent;
+}
+
+.loginButton:hover {
+  background-color: rgba(0, 0, 0, 0.849);
+}
+
+@media only screen and (max-width: 450px) {
+  .container {
+    max-width: 340px;
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .outside {
+    margin-top: 46%;
+  }
+
+  .polygon {
+    clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
