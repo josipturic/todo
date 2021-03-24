@@ -6,6 +6,8 @@ import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
 import TextInput from "../Common/TextInput";
 import * as Yup from "yup";
+import history from "../../../constants/history";
+import { CLIENT } from "../../../constants/appRoutes";
 
 interface IProps {}
 
@@ -25,7 +27,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
             <Avatar className={styles.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <h1>Login</h1>
+            <h1>Prijava</h1>
             <Formik
               initialValues={{
                 email: "",
@@ -66,6 +68,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
                         handleChange={handleChange}
                         handleBlur={handleBlur}
                         id="password"
+                        type="password"
                         errors={errors}
                         touched={touched}
                         value={props.values && props.values.password}
@@ -73,10 +76,12 @@ const Login: React.FC<IProps> = (props: IProps) => {
                       />
                     </div>
                     <div className={styles.smallCont}>
-                      <button className={styles.loginButton}>Login</button>
+                      <button className={styles.loginButton}>Prijavi se</button>
                     </div>
                     <div className={styles.smallCont}>
-                      <span>Nemate račun? Registrirajte se</span>
+                      <span onClick={() => history.push(CLIENT.APP.REGISTER)}>
+                        Nemate račun? Registrirajte se
+                      </span>
                     </div>
                   </form>
                 );

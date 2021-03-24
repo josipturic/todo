@@ -6,6 +6,8 @@ import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
 import TextInput from "../Common/TextInput";
 import * as Yup from "yup";
+import history from "../../../constants/history";
+import { CLIENT } from "../../../constants/appRoutes";
 
 interface IProps {}
 
@@ -25,11 +27,12 @@ const Register: React.FC<IProps> = (props: IProps) => {
             <Avatar className={styles.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <h1>Register</h1>
+            <h1>Registracija</h1>
             <Formik
               initialValues={{
                 email: "",
                 password: "",
+                repeatedPassword: "",
               }}
               onSubmit={(values: any) =>
                 console.log(values.email + "" + values.password)
@@ -37,6 +40,10 @@ const Register: React.FC<IProps> = (props: IProps) => {
               validationSchema={Yup.object().shape({
                 email: Yup.string().required("Obavezno"),
                 password: Yup.string().required("Obavezno"),
+                repeatedPassword: Yup.string().oneOf(
+                  [Yup.ref("password"), null],
+                  "Lozinke moraju biti iste"
+                ),
               })}
             >
               {(props: any) => {
@@ -66,17 +73,34 @@ const Register: React.FC<IProps> = (props: IProps) => {
                         handleChange={handleChange}
                         handleBlur={handleBlur}
                         id="password"
+                        type="password"
                         errors={errors}
                         touched={touched}
                         value={props.values && props.values.password}
-                        placeholder="Password"
+                        placeholder="Lozinka"
                       />
                     </div>
                     <div className={styles.smallCont}>
-                      <button className={styles.loginButton}>Login</button>
+                      <TextInput
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        id="repeatedPassword"
+                        type="password"
+                        errors={errors}
+                        touched={touched}
+                        value={props.values && props.values.repeatedPassword}
+                        placeholder="Ponovite lozinku"
+                      />
                     </div>
                     <div className={styles.smallCont}>
-                      <span>Nemate račun? Registrirajte se</span>
+                      <button className={styles.loginButton}>
+                        Registriraj se
+                      </button>
+                    </div>
+                    <div className={styles.smallCont}>
+                      <span onClick={() => history.push(CLIENT.APP.LOGIN)}>
+                        Imate račun? Prijavite se
+                      </span>
                     </div>
                   </form>
                 );

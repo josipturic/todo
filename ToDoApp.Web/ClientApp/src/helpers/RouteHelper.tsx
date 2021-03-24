@@ -8,4 +8,9 @@ export class RouteHelper {
     if (path.endsWith("register")) return true;
     return false;
   };
+
+  static IsHomepage = (path: string): boolean => {
+    if (path == "/") return true;
+    return false;
+  };
 }

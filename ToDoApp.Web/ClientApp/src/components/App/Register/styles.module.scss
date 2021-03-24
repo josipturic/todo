@@ -101,3 +101,9 @@ $enable-gradients: true;
     clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
+
+@media only screen and (max-width: 1700px) {
+  .outside {
+    margin-top: 14%;
+  }
+}

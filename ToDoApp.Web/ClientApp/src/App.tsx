@@ -7,16 +7,18 @@ import "./custom.css";
 import PublicRoute from "./components/Routes/PublicRoute";
 import { CLIENT } from "./constants/appRoutes";
 import history from "./constants/history";
+import Store from "./Store";
 
 const App = () => {
   return (
     <Router history={history}>
-      {/* Add store */}
-      <Switch>
-        <PublicRoute exact path="/" component={Home} />
-        <PublicRoute exact path={CLIENT.APP.LOGIN} component={Login} />
-        <PublicRoute exact path={CLIENT.APP.REGISTER} component={Register} />
-      </Switch>
+      <Store>
+        <Switch>
+          <PublicRoute exact path={CLIENT.APP.HOMEPAGE} component={Home} />
+          <PublicRoute exact path={CLIENT.APP.LOGIN} component={Login} />
+          <PublicRoute exact path={CLIENT.APP.REGISTER} component={Register} />
+        </Switch>
+      </Store>
     </Router>
   );
 };

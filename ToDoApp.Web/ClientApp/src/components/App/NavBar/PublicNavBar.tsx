@@ -14,6 +14,7 @@ interface IProps {
 
 const PublicNavBar: React.FC<IProps> = (props: IProps) => {
   const isLogin = RouteHelper.IsLogin(window.location.pathname);
+  const isHomepage = RouteHelper.IsHomepage(window.location.pathname);
   const isRegister = RouteHelper.IsRegister(window.location.pathname);
   return (
     <div className={styles.container}>
@@ -24,11 +25,15 @@ const PublicNavBar: React.FC<IProps> = (props: IProps) => {
         </div>
       </div>
       <div className={styles.secondDiv}>
-        <div style={{ marginRight: "11px" }} className={styles.pointer}>
+        <div
+          style={{ marginRight: "11px" }}
+          className={styles.pointer}
+          onClick={() => history.push(CLIENT.APP.HOMEPAGE)}
+        >
           <HomeIcon />
           <p>Početna</p>
         </div>
-        {isRegister && (
+        {(isRegister || isHomepage) && (
           <div
             className={styles.pointer}
             onClick={() => history.push(CLIENT.APP.LOGIN)}
