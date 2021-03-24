@@ -9,7 +9,6 @@ namespace Application.Identity.Commands.Login
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public bool RememberMe { get; set; }
 
         public class Handler : IRequestHandler<LoginCommand, string>
         {
@@ -22,7 +21,7 @@ namespace Application.Identity.Commands.Login
 
             public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                return await _identityService.Login(request.Email, request.Password, request.RememberMe);
+                return await _identityService.Login(request.Email, request.Password, false);
             }
         }
     }

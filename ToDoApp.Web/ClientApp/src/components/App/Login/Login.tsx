@@ -8,6 +8,8 @@ import TextInput from "../Common/TextInput";
 import * as Yup from "yup";
 import history from "../../../constants/history";
 import { CLIENT } from "../../../constants/appRoutes";
+import { ILogin } from "../../../types/ILogin";
+import { LoginService } from "../../../services/login/loginService";
 
 interface IProps {}
 
@@ -33,9 +35,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
                 email: "",
                 password: "",
               }}
-              onSubmit={(values: any) =>
-                console.log(values.email + "" + values.password)
-              }
+              onSubmit={(values: ILogin) => LoginService.Login(values)}
               validationSchema={Yup.object().shape({
                 email: Yup.string().required("Obavezno"),
                 password: Yup.string().required("Obavezno"),
@@ -51,7 +51,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
                   handleSubmit,
                 } = props;
                 return (
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className={styles.smallCont}>
                       <TextInput
                         handleChange={handleChange}
@@ -76,7 +76,13 @@ const Login: React.FC<IProps> = (props: IProps) => {
                       />
                     </div>
                     <div className={styles.smallCont}>
-                      <button className={styles.loginButton}>Prijavi se</button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={styles.loginButton}
+                      >
+                        Prijavi se
+                      </button>
                     </div>
                     <div className={styles.smallCont}>
                       <span onClick={() => history.push(CLIENT.APP.REGISTER)}>
