@@ -42,10 +42,10 @@ const PublicNavBar: React.FC<IProps> = (props: IProps) => {
             <p>Prijava</p>
           </div>
         )}
-        {isLogin && (
+        {(isLogin || isHomepage) && (
           <div
             className={styles.pointer}
-            onClick={() => history.push(CLIENT.APP.REGISTER)}
+            onClick={() => history.push(CLIENT.APP.REGISTER_STEP_1)}
           >
             <PersonIcon />
             <p>Registracija</p>

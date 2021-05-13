@@ -1,3 +1,4 @@
+import { AccountService } from './../account/accountService';
 import React from 'react';
 import { ILogin } from '../../types/ILogin';
 import { IRegister } from '../../types/IRegister';
@@ -12,9 +13,4 @@ export class LoginService {
             console.log(err)
         }
     }
-
-    static Register = (register: IRegister) => {
-        console.log(register)
-    }
-
 } 

@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ToDoApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ToDoDBContext))]
-    partial class ToDoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210513194502_autogenerateId")]
+    partial class autogenerateId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,28 +125,6 @@ namespace ToDoApp.Infrastructure.Migrations
                     b.HasIndex("ServiceProviderId");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryName = "Čišćenje kuća"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryName = "Iznajmljivanje party kuća"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryName = "Šetanje pasa"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryName = "Pravljenje kolača"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

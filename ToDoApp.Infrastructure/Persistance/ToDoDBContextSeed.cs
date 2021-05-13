@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence

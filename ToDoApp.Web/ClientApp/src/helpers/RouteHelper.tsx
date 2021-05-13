@@ -5,7 +5,7 @@ export class RouteHelper {
   };
 
   static IsRegister = (path: string): boolean => {
-    if (path.endsWith("register")) return true;
+    if (path.endsWith("register/1")) return true;
     return false;
   };
 

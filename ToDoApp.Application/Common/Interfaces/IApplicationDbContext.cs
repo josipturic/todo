@@ -11,7 +11,9 @@ namespace Application.Common.Interfaces
         DbSet<Admin> Admins { get; set; }
         DbSet<ServiceProvider> ServiceProviders { get; set; }
         DbSet<RegisteredUser> Users { get; set; }
+        DbSet<Category> Categories { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }
+

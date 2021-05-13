@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import styles from "./styles.module.scss";
@@ -9,17 +9,27 @@ import * as Yup from "yup";
 import history from "../../../constants/history";
 import { CLIENT } from "../../../constants/appRoutes";
 import { IRegister } from "../../../types/IRegister";
-import { LoginService } from "../../../services/login/loginService";
+import { RegisterService } from "../../../services/register/registerService";
+import { AccountService } from "../../../services/account/accountService";
+import { LoginContext } from "../../../context/login/loginContext";
 
 interface IProps {}
 
-const Register: React.FC<IProps> = (props: IProps) => {
+const RegisterStep1: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
+  const loginContext = useContext(LoginContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
   }, [location]);
+
+  const RegisterUser = async (data: IRegister) => {
+    var response = await RegisterService.InitialRegister(data);
+    var loginData = await AccountService.SetAuthToken(response);
+    loginContext.setLoginData(loginData);
+    history.push(CLIENT.APP.REGISTER_STEP_2);
+  };
 
   return (
     <>
@@ -36,7 +46,7 @@ const Register: React.FC<IProps> = (props: IProps) => {
                 password: "",
                 repeatedPassword: "",
               }}
-              onSubmit={(values: IRegister) => LoginService.Register(values)}
+              onSubmit={(values: IRegister) => RegisterUser(values)}
               validationSchema={Yup.object().shape({
                 email: Yup.string().required("Obavezno"),
                 password: Yup.string().required("Obavezno"),
@@ -117,4 +127,4 @@ const Register: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-export default Register;
+export default RegisterStep1;

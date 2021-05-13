@@ -9,12 +9,22 @@ using Application.ServiceProviders.Commands.CreateServiceProvider;
 using Application.ServiceProviders.Models;
 using Web.Controllers;
 using Application.ServiceProviders.Queries.FilterServiceProviders;
+using Application.ServiceProviders.Commands.CreateInitialServiceProvider;
 
 namespace ToDoApp.Web.Controllers
 {
     [Authorize]
     public class ServiceProviderController : ApiController
     {
+        [HttpPost("initial")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateInitialServiceProvider(CreateInitialServiceProviderCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesDefaultResponseType]

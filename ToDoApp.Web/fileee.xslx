@@ -1,0 +1,7 @@
+Time,Account,Operation,Coin,Asset change,Balance
+2021-02-12,05:42:50,Spot Market,Account	trade,USDT,-0,00213421,1581,386078
+2021-02-12,05:42:50,Spot Market,Account	trade,USDT,1,06710404,1581.38821190
+2021-02-12,05:42:50,Spot Market,Account	trade,ZIL,-9,70094584,0.00000000
+2021-02-12,05:38:14,Spot Market,Account	trade,USDT,-0,12771,1580.32110786
+2021-02-12,05:38:14,Spot Market,Account	trade,USDT,63,855,1580.44881786
+2021-02-12,05:38:14,Spot Market,Account	trade,ZIL,-580,5,9.70094584

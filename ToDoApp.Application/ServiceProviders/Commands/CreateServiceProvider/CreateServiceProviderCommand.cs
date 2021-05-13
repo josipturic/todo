@@ -27,7 +27,7 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
 
             public async Task<string> Handle(CreateServiceProviderCommand request, CancellationToken cancellationToken)
             {
-                var payer = new ServiceProvider
+                var serviceProvider = new ServiceProvider
                 {
                     Email = request.Email,
                     Oib = request.Oib,
@@ -37,8 +37,8 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
                     TOSAccepted = request.TOSAccepted,
                 };
 
-                await _identityService.CreateUserAsync(payer, RoleEnum.ServiceProvider, request.Password);
-                return await _identityService.Login(payer.Email, request.Password, false);
+                await _identityService.CreateUserAsync(serviceProvider, RoleEnum.ServiceProvider, request.Password);
+                return await _identityService.Login(serviceProvider.Email, request.Password, false);
             }
         }
     }

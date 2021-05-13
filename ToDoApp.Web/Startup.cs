@@ -93,20 +93,9 @@ namespace ToDoApp
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "SkipperBooking API",
+                    Title = "ToDoApp API",
                     Description = "API Calls",
                     TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Brain IT",
-                        Email = string.Empty,
-                        Url = new Uri("https://brain-it.hr"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
-                    }
                 });
 
                 // Set the comments path for the Swagger JSON and UI.

@@ -17,5 +17,10 @@ namespace Domain.Entities
         {
             SubCategories = new List<Category>();
         }
+        public Category (int id, string categoryName)
+        {
+            Id = id;
+            CategoryName = categoryName;
+        }
     }
 }
