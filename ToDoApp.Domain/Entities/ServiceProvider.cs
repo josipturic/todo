@@ -12,13 +12,10 @@ namespace Domain.Entities
             get => CompanyName;
         }
         public string BusinessDescription { get; set; }
-        public int MainCategoryId { get; set; }
-        [ForeignKey(nameof(MainCategoryId))]
-        public virtual Category MainCategory { get; set; }
-        public ICollection<Category> SubCategories { get; set; }
+        public List<ServiceProviderCategory> Categories { get; set; }
         public ServiceProvider()
         {
-            SubCategories = new List<Category>();
+            Categories = new List<ServiceProviderCategory>();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -7,15 +6,10 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public int? ParentId { get; set; }
-        [ForeignKey(nameof(ParentId))]
-        public virtual Category ParentCategory { get; set; }
-        public virtual ICollection<Category> SubCategories { get; set; }
-        [NotMapped]
-        public bool IsMainCategory { get => ParentCategory is null; }
+        public List<ServiceProviderCategory> ServiceProviders { get; set; }
         public Category ()
         {
-            SubCategories = new List<Category>();
+            ServiceProviders = new List<ServiceProviderCategory>();
         }
         public Category (int id, string categoryName)
         {

@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using Application.ReqisteredUsers.Models;
 using Application.Common.Interfaces;
 using AutoMapper;
 using System.Threading.Tasks;
 using System.Threading;
-using Application.Extensions;
 using ToDoApp.Application.Categories.Models;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;

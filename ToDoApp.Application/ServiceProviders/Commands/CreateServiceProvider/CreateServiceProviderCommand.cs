@@ -33,7 +33,6 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
                     Oib = request.Oib,
                     CompanyName = request.CompanyName,
                     BusinessDescription = request.BusinessDescription,
-                    MainCategoryId = request.MainCategoryId,
                     TOSAccepted = request.TOSAccepted,
                 };
 
