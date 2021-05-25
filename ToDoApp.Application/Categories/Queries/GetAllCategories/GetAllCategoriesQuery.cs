@@ -25,7 +25,7 @@ namespace ToDoApp.Application.Categories.Queries.GetAllCategories
 
             public async Task<IEnumerable<CategoryModel>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
             {
-                return await _context.ServiceProviders.ProjectTo<CategoryModel>(_mapper.ConfigurationProvider)
+                return await _context.Categories.ProjectTo<CategoryModel>(_mapper.ConfigurationProvider)
                .ToListAsync(cancellationToken);
             }
         }

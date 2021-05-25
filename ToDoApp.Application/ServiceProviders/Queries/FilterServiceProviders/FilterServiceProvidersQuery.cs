@@ -33,8 +33,10 @@ namespace Application.ServiceProviders.Queries.FilterServiceProviders
                 var categoryId = int.Parse(request.MainCategoryId);
                 var subcategoryIds = ServiceProviderHelper.ParseSubcategoryIds(request.SubCategoryIds);
 
-                var serviceProviders = await _context.ServiceProviders.
-                    Where(p => p.Categories.Select( s => s.CategoryId).Any(c => subcategoryIds.Any(sc => sc == c))).ProjectTo<ServiceProviderModel>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+                var serviceProviders = await _context.ServiceProviders.ProjectTo<ServiceProviderModel>(_mapper.ConfigurationProvider).
+                   ToListAsync(cancellationToken);
+
+                //Where(p => p.Categories.Select(s => s.CategoryId).Any(c => subcategoryIds.Any(sc => sc == c))).ProjectTo<ServiceProviderModel>(_mapper.ConfigurationProvider).
 
                 return serviceProviders;
             }

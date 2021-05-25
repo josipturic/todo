@@ -13,8 +13,5 @@ namespace Application.ServiceProviders.Models
         public string Address { get; set; }
         public bool TOSAccepted { get; set; }
         public string Oib { get; set; }
-        public string BusinessDescription { get; set; }
-        public Category MainCategory { get; set; }
-        public ICollection<Category> SubCategories { get; set; }
     }
 }

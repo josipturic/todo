@@ -6,5 +6,9 @@ export const CLIENT = {
     LOGIN: `/login`,
     REGISTER_STEP_1: `/register/1`,
     REGISTER_STEP_2: `/register/2`,
+    SERVICE_PROVIDER: {
+      HOMEPAGE: `/homepage`,
+      NEW_SERVICE: `/service-provider/new-service`,
+    },
   },
 };

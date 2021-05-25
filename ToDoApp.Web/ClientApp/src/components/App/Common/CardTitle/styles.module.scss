@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.elements {
+  width: 80%;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #1171ef;
+  background: linear-gradient(to right, #00a0bd 29%, #1171ef 100%);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  margin-top: -25px;
+  position: relative;
+  left: -100px;
+}
+
+.title {
+  font-size: 18px;
+  color: white;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 0px !important;
+}

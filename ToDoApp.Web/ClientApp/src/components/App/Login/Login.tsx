@@ -4,7 +4,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import styles from "./login.module.scss";
 import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
-import TextInput from "../Common/TextInput";
+import TextInput from "../Common/TextInput/TextInput";
 import * as Yup from "yup";
 import history from "../../../constants/history";
 import { CLIENT } from "../../../constants/appRoutes";

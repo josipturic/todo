@@ -11,7 +11,8 @@ namespace Application.ServiceProviders.Commands.CreateInitialServiceProvider
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public bool TOSAccepted { get; set; }
+        public string CompanyName { get; set; }
+        public string Oib { get; set; }
         public class Handler : IRequestHandler<CreateInitialServiceProviderCommand, string>
         {
             private readonly IIdentityService _identityService;
@@ -23,10 +24,11 @@ namespace Application.ServiceProviders.Commands.CreateInitialServiceProvider
 
             public async Task<string> Handle(CreateInitialServiceProviderCommand request, CancellationToken cancellationToken)
             {
-                var user = new RegisteredUser
+                var user = new ServiceProvider
                 {
                     Email = request.Email,
-                    TOSAccepted = request.TOSAccepted,
+                    CompanyName = request.CompanyName,
+                    Oib = request.Oib
                 };
 
                 await _identityService.CreateUserAsync(user, RoleEnum.ServiceProvider, request.Password);

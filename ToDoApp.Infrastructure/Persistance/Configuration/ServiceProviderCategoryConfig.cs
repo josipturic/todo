@@ -4,23 +4,22 @@ using Domain.Entities;
 
 namespace SkipperAgency.Infrastructure.Persistence.Configurations
 {
-    public class ServiceProviderCategoryConfig : IEntityTypeConfiguration<ServiceProviderCategory>
+    public class ServiceProviderCategoryConfig : IEntityTypeConfiguration<ServiceCategory>
     {
-        public void Configure(EntityTypeBuilder<ServiceProviderCategory> builder)
+        public void Configure(EntityTypeBuilder<ServiceCategory> builder)
         {
             builder
-                .HasKey(bc => new { bc.ServiceProviderId, bc.CategoryId });
+                .HasKey(bc => new { bc.ServiceId, bc.CategoryId });
 
             builder
-                .HasOne(bc => bc.ServiceProvider)
+                .HasOne(bc => bc.Service)
                 .WithMany(b => b.Categories)
-                .HasForeignKey(bc => bc.ServiceProviderId)
+                .HasForeignKey(bc => bc.ServiceId)
                 .OnDelete(DeleteBehavior.Restrict);
-
 
             builder
                 .HasOne(bc => bc.Category)
-                .WithMany(c => c.ServiceProviders)
+                .WithMany(c => c.Services)
                 .HasForeignKey(bc => bc.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

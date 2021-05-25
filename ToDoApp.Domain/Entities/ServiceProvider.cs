@@ -12,10 +12,10 @@ namespace Domain.Entities
             get => CompanyName;
         }
         public string BusinessDescription { get; set; }
-        public List<ServiceProviderCategory> Categories { get; set; }
+        public List<Service> Services { get; set; }
         public ServiceProvider()
         {
-            Categories = new List<ServiceProviderCategory>();
+            Services = new List<Service>();
         }
     }
 }

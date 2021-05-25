@@ -4,31 +4,45 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import styles from "./styles.module.scss";
 import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
-import TextInput from "../Common/TextInput";
+import TextInput from "../Common/TextInput/TextInput";
 import * as Yup from "yup";
 import history from "../../../constants/history";
 import { CLIENT } from "../../../constants/appRoutes";
 import { IRegister } from "../../../types/IRegister";
 import { RegisterService } from "../../../services/register/registerService";
 import { AccountService } from "../../../services/account/accountService";
+import { MetadataService } from "../../../services/metadata/metadataService";
 import { LoginContext } from "../../../context/login/loginContext";
+import { CategoryContext } from "../../../context/category/categoryContext";
 
 interface IProps {}
 
 const RegisterStep1: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
   const loginContext = useContext(LoginContext);
+  const categoryContext = useContext(CategoryContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
   }, [location]);
 
+  useEffect(() => {
+    async function getCategories() {
+      var response = await MetadataService.GetAllCategories();
+      categoryContext.setCategories(response!);
+    }
+
+    getCategories();
+  }, []);
+
   const RegisterUser = async (data: IRegister) => {
     var response = await RegisterService.InitialRegister(data);
     var loginData = await AccountService.SetAuthToken(response);
     loginContext.setLoginData(loginData);
-    history.push(CLIENT.APP.REGISTER_STEP_2);
+    setTimeout(function () {
+      history.push(CLIENT.APP.REGISTER_STEP_2);
+    }, 3000);
   };
 
   return (
@@ -43,6 +57,8 @@ const RegisterStep1: React.FC<IProps> = (props: IProps) => {
             <Formik
               initialValues={{
                 email: "",
+                companyName: "",
+                oib: "",
                 password: "",
                 repeatedPassword: "",
               }}
@@ -76,6 +92,28 @@ const RegisterStep1: React.FC<IProps> = (props: IProps) => {
                         touched={touched}
                         value={props.values && props.values.email}
                         placeholder="Email"
+                      />
+                    </div>
+                    <div className={styles.smallCont}>
+                      <TextInput
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        id="companyName"
+                        errors={errors}
+                        touched={touched}
+                        value={props.values && props.values.companyName}
+                        placeholder="Ime tvrtke/obrta"
+                      />
+                    </div>
+                    <div className={styles.smallCont}>
+                      <TextInput
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        id="oib"
+                        errors={errors}
+                        touched={touched}
+                        value={props.values && props.values.oib}
+                        placeholder="OIB tvrtke/obrta"
                       />
                     </div>
                     <div className={styles.smallCont}>

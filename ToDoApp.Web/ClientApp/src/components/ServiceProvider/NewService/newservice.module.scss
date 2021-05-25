@@ -1,0 +1,54 @@
+.container {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.formControl {
+  width: 100%;
+  margin: 0px !important;
+  div {
+    max-height: 40px;
+  }
+  label {
+    transform: translate(14px, 12px) scale(1);
+    font-style: italic;
+    font-size: 15px;
+  }
+}
+
+.formContainer {
+  width: 80% !important;
+  justify-content: center !important;
+  display: flex !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 30px !important;
+
+  input {
+    height: 40px !important;
+  }
+}
+
+.addButton {
+  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
+    0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  background-color: #9c27b0;
+  color: #fff;
+  border: none;
+  margin: 0.3125rem 1px;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  line-height: 1.42857143;
+  padding: 12px 30px;
+}
+
+.outerContainer {
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 30px;
+  width: calc(100% - 20px);
+}

@@ -9,6 +9,9 @@ import PublicRoute from "./components/Routes/PublicRoute";
 import { CLIENT } from "./constants/appRoutes";
 import history from "./constants/history";
 import Store from "./Store";
+import PrivateRoute from "./components/Routes/PrivateRoute";
+import Homepage from "./components/ServiceProvider/Homepage/Homepage";
+import NewService from "./components/ServiceProvider/NewService/NewService";
 
 const App = () => {
   return (
@@ -26,6 +29,16 @@ const App = () => {
             exact
             path={CLIENT.APP.REGISTER_STEP_2}
             component={RegisterStep2}
+          />
+          <PrivateRoute
+            exact
+            path={CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE}
+            component={Homepage}
+          />
+          <PrivateRoute
+            exact
+            path={CLIENT.APP.SERVICE_PROVIDER.NEW_SERVICE}
+            component={NewService}
           />
         </Switch>
       </Store>

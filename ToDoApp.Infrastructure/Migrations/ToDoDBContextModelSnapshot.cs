@@ -137,19 +137,48 @@ namespace ToDoApp.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.ServiceProviderCategory", b =>
+            modelBuilder.Entity("Domain.Entities.Service", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicePrice")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ServiceProviderId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceProviderId");
+
+                    b.ToTable("Service");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ServiceCategory", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.HasKey("ServiceProviderId", "CategoryId");
+                    b.HasKey("ServiceId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ServiceProviderCategory");
+                    b.ToTable("ServiceCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -316,17 +345,25 @@ namespace ToDoApp.Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("ServiceProvider");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ServiceProviderCategory", b =>
+            modelBuilder.Entity("Domain.Entities.Service", b =>
+                {
+                    b.HasOne("Domain.Entities.ServiceProvider", "ServiceProvider")
+                        .WithMany("Services")
+                        .HasForeignKey("ServiceProviderId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Domain.Entities.ServiceCategory", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Category")
-                        .WithMany("ServiceProviders")
+                        .WithMany("Services")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ServiceProvider", "ServiceProvider")
+                    b.HasOne("Domain.Entities.Service", "Service")
                         .WithMany("Categories")
-                        .HasForeignKey("ServiceProviderId")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

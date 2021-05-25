@@ -1,4 +1,8 @@
 export interface IFinishRegistration {
+    id: string,
     companyName: string,
-    businessDescription: string
+    address: string,
+    oib: string,
+    businessDescription: string,
+    categoryIds: string[]
 }

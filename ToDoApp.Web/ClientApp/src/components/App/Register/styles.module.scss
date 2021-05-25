@@ -6,7 +6,7 @@ $enable-gradients: true;
 
 .outside {
   height: 100%;
-  margin-top: 26%;
+  margin-top: 18%;
 }
 
 .smallCont {
@@ -43,7 +43,7 @@ $enable-gradients: true;
   background-color: white;
   max-width: 407px;
   position: relative;
-  top: 25%;
+  top: 20%;
   margin: auto;
   z-index: 1;
   border-radius: 11px;
@@ -85,6 +85,44 @@ $enable-gradients: true;
   background-color: rgba(0, 0, 0, 0.849);
 }
 
+.transparent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.checkIcon svg {
+  height: 250px;
+  width: 250px;
+  color: green;
+}
+
+.textLg {
+  font-size: 26px;
+}
+
+.textMd {
+  font-size: 23px;
+}
+
+.chipCont {
+  display: inline;
+  div {
+    margin-right: 3px;
+    margin-bottom: 6px;
+  }
+  span {
+    text-decoration: none !important;
+    color: white !important;
+  }
+}
+
+.chipContSelected div {
+  background-color: brown !important;
+}
+
 @media only screen and (max-width: 450px) {
   .container {
     max-width: 340px;
@@ -104,6 +142,6 @@ $enable-gradients: true;
 
 @media only screen and (max-width: 1700px) {
   .outside {
-    margin-top: 14%;
+    margin-top: 8%;
   }
 }
