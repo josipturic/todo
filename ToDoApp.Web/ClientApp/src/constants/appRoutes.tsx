@@ -9,6 +9,8 @@ export const CLIENT = {
     SERVICE_PROVIDER: {
       HOMEPAGE: `/homepage`,
       NEW_SERVICE: `/service-provider/new-service`,
+      LIST_OF_SERVICES: `/service-provider/list-of-services`,
+      SERVICE: (serviceId: string) => `/service-provider/service/${serviceId}`,
     },
   },
 };

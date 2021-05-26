@@ -10,6 +10,7 @@ import history from "../../../constants/history";
 import { CLIENT } from "../../../constants/appRoutes";
 import { ILogin } from "../../../types/ILogin";
 import { LoginService } from "../../../services/login/loginService";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 interface IProps {}
 
@@ -81,7 +82,11 @@ const Login: React.FC<IProps> = (props: IProps) => {
                         disabled={isSubmitting}
                         className={styles.loginButton}
                       >
-                        Prijavi se
+                        {isSubmitting ? (
+                          <CircularProgress />
+                        ) : (
+                          <p>Prijavi se</p>
+                        )}
                       </button>
                     </div>
                     <div className={styles.smallCont}>

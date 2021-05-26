@@ -4,7 +4,8 @@ using AutoMapper;
 using System.Threading.Tasks;
 using System.Threading;
 using ToDoApp.Application.Services.Models;
-using Application.Extensions;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace ToDoApp.Application.Services.Queries.GetService
 {
@@ -24,7 +25,7 @@ namespace ToDoApp.Application.Services.Queries.GetService
 
             public async Task<ServiceModel> Handle(GetServiceQuery request, CancellationToken cancellationToken)
             {
-                var service =  await _context.Services.FindByKeyAsync(request.ServiceId, cancellationToken);
+                var service =  await _context.Services.Include(s => s.Categories).ThenInclude(c => c.Category).Include(s => s.ServiceProvider).FirstOrDefaultAsync(s => s.Id == request.ServiceId);
                 return _mapper.Map<ServiceModel>(service);
             }
         }

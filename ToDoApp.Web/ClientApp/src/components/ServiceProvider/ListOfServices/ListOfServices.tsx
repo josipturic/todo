@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { LoginContext } from "../../../context/login/loginContext";
 import styles from "./newservice.module.scss";
 import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
@@ -12,45 +13,18 @@ import { ServiceService } from "../../../services/service/serviceService";
 
 interface IProps {}
 
-const NewService: React.FC<IProps> = (props: IProps) => {
-  const categories: ICategory[] = [
-    { id: 1, categoryName: "Nova kateg" },
-    { id: 2, categoryName: "Nova kategorija" },
-    { id: 3, categoryName: "Nova kategorija Nova kategorija" },
-    { id: 4, categoryName: "Nova kategorija Novo" },
-    { id: 5, categoryName: "Kategorija" },
-    { id: 6, categoryName: "Nova kgorija sada" },
-    { id: 7, categoryName: "Nova sada" },
-    { id: 8, categoryName: "Nova asdaaas" },
-    { id: 9, categoryName: "Nova" },
-    { id: 10, categoryName: "Ostalo" },
-  ];
+const ListOfServices: React.FC<IProps> = (props: IProps) => {
+  const loginContext = useContext(LoginContext);
+  const [services, setServices] = useState<IService[]>([]);
 
-  const [selectedCategories, setSelectedCategories] = useState<ICategory[]>([]);
-
-  const IsCategorySelected = (category: ICategory) => {
-    return selectedCategories.some((o) => o.id == category.id);
-  };
-
-  const AddNewService = async (service: IService) => {
-    var response = await ServiceService.AddNewService({
-      ...service,
-      categoryIds: selectedCategories.flatMap((o) => o.id.toString()),
-    });
-    console.log(response);
-  };
-
-  const AddNewCategory = (category: ICategory) => {
-    var selected = selectedCategories.slice();
-
-    if (selected.some((o) => o.id == category.id)) {
-      selected = selected.filter((o) => o.id != category.id);
-    } else {
-      selected.push(category);
+  useEffect(() => {
+    async function GetServices() {
+      var fetchedServices = await ServiceService.GetAllServices();
+      console.log(fetchedServices);
+      setServices(fetchedServices);
     }
-    console.log(selected);
-    setSelectedCategories(selected);
-  };
+    GetServices();
+  });
 
   return (
     <div className={styles.outerContainer}>
@@ -288,4 +262,4 @@ const NewService: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-export default NewService;
+export default ListOfServices;

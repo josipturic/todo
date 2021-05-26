@@ -18,6 +18,30 @@
   }
 }
 
+.paragraph {
+  margin-bottom: 0px !important;
+  font-size: 16px;
+}
+
+.chipCont {
+  display: inline;
+  div {
+    margin-right: 8px;
+    margin-bottom: 11px;
+  }
+  span {
+    text-decoration: none !important;
+    color: white !important;
+    font-size: 15px;
+    padding: 20px;
+  }
+}
+
+.chipContSelected div {
+  background-color: #1171ef;
+  background: linear-gradient(to right, #00a0bd 29%, #1171ef 100%);
+}
+
 .formContainer {
   width: 80% !important;
   justify-content: center !important;

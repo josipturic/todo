@@ -12,6 +12,7 @@ import Store from "./Store";
 import PrivateRoute from "./components/Routes/PrivateRoute";
 import Homepage from "./components/ServiceProvider/Homepage/Homepage";
 import NewService from "./components/ServiceProvider/NewService/NewService";
+import ListOfServices from "./components/ServiceProvider/ListOfServices/ListOfServices";
 
 const App = () => {
   return (
@@ -32,13 +33,21 @@ const App = () => {
           />
           <PrivateRoute
             exact
+            history={history}
             path={CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE}
             component={Homepage}
           />
           <PrivateRoute
             exact
+            history={history}
             path={CLIENT.APP.SERVICE_PROVIDER.NEW_SERVICE}
             component={NewService}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.SERVICE_PROVIDER.LIST_OF_SERVICES}
+            component={ListOfServices}
           />
         </Switch>
       </Store>

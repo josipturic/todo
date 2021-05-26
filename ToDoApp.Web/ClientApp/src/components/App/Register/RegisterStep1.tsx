@@ -14,6 +14,7 @@ import { AccountService } from "../../../services/account/accountService";
 import { MetadataService } from "../../../services/metadata/metadataService";
 import { LoginContext } from "../../../context/login/loginContext";
 import { CategoryContext } from "../../../context/category/categoryContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 interface IProps {}
 
@@ -146,7 +147,11 @@ const RegisterStep1: React.FC<IProps> = (props: IProps) => {
                         disabled={isSubmitting}
                         className={styles.loginButton}
                       >
-                        Registriraj se
+                        {isSubmitting ? (
+                          <CircularProgress />
+                        ) : (
+                          <p> Registriraj se</p>
+                        )}
                       </button>
                     </div>
                     <div className={styles.smallCont}>

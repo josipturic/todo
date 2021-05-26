@@ -18,14 +18,17 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import RegisterUser from "@material-ui/icons/PersonAddOutlined";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import LogOutIcon from "@material-ui/icons/ExitToAppOutlined";
 import clsx from "clsx";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import MoneyIcon from "@material-ui/icons/Money";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Dashboard from "@material-ui/icons/DashboardOutlined";
 import { useStyles } from "./NavBar.animations";
 import { useTheme } from "@material-ui/core/styles";
+import history from "../../../../constants/history";
 import {
   isAdmin,
   isAuthenticated,
@@ -57,7 +60,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
   }
 
   const logout = () => {
-    props.history.push("/");
+    history.push("/");
   };
 
   const handleMove = (ev: any) => {
@@ -181,7 +184,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
-                  <LocalAtmIcon />
+                  <AddBoxIcon />
                 </ListItemIcon>
                 <ListItemText>Dodaj uslugu</ListItemText>
               </ListItem>
@@ -190,11 +193,11 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
               <ListItem
                 button
                 component={RouterLink}
-                to="/person-in-need/list-of-expenses"
+                to="/service-provider/list-of-services"
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
-                  <MoneyIcon />
+                  <ListAltIcon />
                 </ListItemIcon>
                 <ListItemText>Pregled usluga</ListItemText>
               </ListItem>
@@ -207,7 +210,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
-                  <MoneyIcon />
+                  <SettingsApplicationsIcon />
                 </ListItemIcon>
                 <ListItemText>Pregled osobnih podataka</ListItemText>
               </ListItem>
