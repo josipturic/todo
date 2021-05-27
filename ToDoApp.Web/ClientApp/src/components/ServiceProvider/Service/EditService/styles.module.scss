@@ -25,6 +25,10 @@
 
 .chipCont {
   display: inline;
+  width: fit-content !important;
+  margin-right: 8px;
+  margin-bottom: 11px;
+  margin-top: 11px;
   div {
     margin-right: 8px;
     margin-bottom: 11px;
@@ -38,6 +42,7 @@
 }
 
 .chipContSelected div {
+  width: fit-content !important;
   background-color: #1171ef;
   background: linear-gradient(to right, #00a0bd 29%, #1171ef 100%);
 }
@@ -47,30 +52,29 @@
   margin: 10px !important;
   border-radius: 10px;
   flex-direction: inherit !important;
-  cursor: pointer;
   box-shadow: 0 2px 2px 0 rgba(86, 73, 88, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
   padding: 20px;
 }
 
 .lgContainer {
-  width: 45%;
+  width: 85%;
   margin: 30px;
 }
 
-.somCont {
-  width: 100% !important;
-}
-
 .iconCont {
+  :first-child {
+    transform: scale(1.08);
+  }
   :hover {
     cursor: pointer;
     color: #1171ef;
+    background-color: transparent !important;
     :first-child {
       transform: scale(1.15);
     }
   }
-  margin-top: 10px;
+  margin-top: 20px !important;
 }
 
 .formContainer {

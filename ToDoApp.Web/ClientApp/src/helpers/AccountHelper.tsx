@@ -36,6 +36,14 @@ export function isAuthenticated(): boolean {
   return false;
 }
 
+export function getUserId() {
+  const token = getToken();
+  if (!token) return null;
+  var payload: any = jwt_decode(token);
+  var userId = payload["sub"];
+  return userId;
+}
+
 export function getUserRole() {
   const token = getToken();
   if (!token) return null;

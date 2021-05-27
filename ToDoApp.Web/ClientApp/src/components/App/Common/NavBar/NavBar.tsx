@@ -29,6 +29,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { useStyles } from "./NavBar.animations";
 import { useTheme } from "@material-ui/core/styles";
 import history from "../../../../constants/history";
+import { CLIENT } from "../../../../constants/appRoutes";
 import {
   isAdmin,
   isAuthenticated,
@@ -180,7 +181,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
               <ListItem
                 button
                 component={RouterLink}
-                to="/service-provider/new-service"
+                to={CLIENT.APP.SERVICE_PROVIDER.NEW_SERVICE}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
@@ -193,20 +194,33 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
               <ListItem
                 button
                 component={RouterLink}
-                to="/service-provider/list-of-services"
+                to={CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
                   <ListAltIcon />
                 </ListItemIcon>
-                <ListItemText>Pregled usluga</ListItemText>
+                <ListItemText>Pregled vaših usluga</ListItemText>
               </ListItem>
             )}
             {serviceProvder && (
               <ListItem
                 button
                 component={RouterLink}
-                to="/person-in-need/list-of-expenses"
+                to={CLIENT.APP.SERVICE_PROVIDER.LIST_OF_SERVICES}
+                onClick={() => closeNavBar()}
+              >
+                <ListItemIcon>
+                  <ListAltIcon />
+                </ListItemIcon>
+                <ListItemText>Pregled svih usluga</ListItemText>
+              </ListItem>
+            )}
+            {serviceProvder && (
+              <ListItem
+                button
+                component={RouterLink}
+                to={CLIENT.APP.SERVICE_PROVIDER.PERSONAL_DATA}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>

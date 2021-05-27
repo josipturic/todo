@@ -13,4 +13,9 @@ export class RouteHelper {
     if (path == "/") return true;
     return false;
   };
+
+  static GetServiceId = (path: string): string => {
+    var parsedPath = path.split("/");
+    return parsedPath[2];
+  };
 }

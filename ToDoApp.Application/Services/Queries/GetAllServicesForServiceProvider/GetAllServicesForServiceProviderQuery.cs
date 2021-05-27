@@ -18,16 +18,19 @@ namespace ToDoApp.Application.Services.Queries.GetAllServicesForServiceProvider
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
+            private readonly ICurrentUserService _currentUserService;
 
-            public Handler(IApplicationDbContext context, IMapper mapper)
+
+            public Handler(IApplicationDbContext context, IMapper mapper, ICurrentUserService currentUserService)
             {
                 _context = context;
                 _mapper = mapper;
+                _currentUserService = currentUserService;
             }
 
             public async Task<IEnumerable<ServiceModel>> Handle(GetAllServicesForServiceProviderQuery request, CancellationToken cancellationToken)
             {
-                var service = await _context.Services.Include(s => s.ServiceProvider).Include(s => s.Categories).ThenInclude(c => c.Category).Where(s => s.ServiceProviderId == request.ServiceProviderId).ToListAsync();
+                var service = await _context.Services.Include(s => s.ServiceProvider).Include(s => s.Categories).ThenInclude(c => c.Category).Where(s => s.ServiceProviderId == _currentUserService.UserId).ToListAsync();
                 return _mapper.Map<IEnumerable<ServiceModel>>(service);
             }
         }

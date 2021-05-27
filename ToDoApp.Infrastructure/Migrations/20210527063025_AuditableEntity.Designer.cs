@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ToDoApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ToDoDBContext))]
-    partial class ToDoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210527063025_AuditableEntity")]
+    partial class AuditableEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,9 +172,6 @@ namespace ToDoApp.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumOfViews")
-                        .HasColumnType("int");
 
                     b.Property<string>("ServicePrice")
                         .HasColumnType("nvarchar(max)");

@@ -5,18 +5,26 @@ import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
 import { LinearProgress, Grid, Chip } from "@material-ui/core";
 import { ServiceService } from "../../../services/service/serviceService";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { IGetService } from "../../../types/IGetService";
 import { parseDate } from "../../../helpers/DateTimeHelper";
+import { getUserId } from "../../../helpers/AccountHelper";
+import { CLIENT } from "../../../constants/appRoutes";
 
-interface IProps {}
+interface IProps {
+  history: any;
+}
 
-const ListOfServices: React.FC<IProps> = (props: IProps) => {
+const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
   const loginContext = useContext(LoginContext);
   const [services, setServices] = useState<IGetService[]>([]);
 
   useEffect(() => {
     async function GetServices() {
-      var fetchedServices = await ServiceService.GetAllServices();
+      var fetchedServices = await ServiceService.GetServiceProviderServices(
+        getUserId()
+      );
       setServices(fetchedServices);
     }
     GetServices();
@@ -31,12 +39,12 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
     return text;
   };
 
-  const UpdateNumOfViews = async (serviceId: string) => {
-    await ServiceService.UpdateNumOfViews(serviceId);
-  };
-
   const NormalizeDate = (date: string): string => {
     return parseDate(date);
+  };
+
+  const OpenService = (id: string) => {
+    props.history.push(CLIENT.APP.SERVICE_PROVIDER.SERVICE_WITH_ID(id));
   };
 
   return (
@@ -44,8 +52,8 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
       <ComponentName name="Pregled usluga" />
       <div className={styles.container}>
         <CardHeader
-          title="Pregled svih usluga"
-          subtitle="Popis svih usluga u sustavu"
+          title="Pregled vaših usluga"
+          subtitle="Popis svih vaših usluga u sustavu"
         />
         <div className={styles.form}>
           <Grid
@@ -69,7 +77,7 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
                         direction="column"
                       >
                         <div
-                          onClick={() => UpdateNumOfViews(s.id)}
+                          onClick={() => OpenService(s.id)}
                           className={styles.somCont}
                         >
                           <Grid container item xs={12} spacing={1}>
@@ -128,6 +136,14 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
                           </Grid>
                           <Grid container item xs={12} spacing={1}>
                             <Grid container item xs={4}>
+                              <p>Broj pregleda</p>
+                            </Grid>
+                            <Grid container item xs={7}>
+                              {s.numOfViews}
+                            </Grid>
+                          </Grid>
+                          <Grid container item xs={12} spacing={1}>
+                            <Grid container item xs={4}>
                               <p>Datum stvaranja</p>
                             </Grid>
                             <Grid container item xs={7}>
@@ -158,6 +174,36 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
                             </Grid>
                           </Grid>
                         </div>
+                        <Grid
+                          container
+                          item
+                          xs={12}
+                          spacing={1}
+                          justify="center"
+                        >
+                          <Grid
+                            container
+                            item
+                            xs={1}
+                            justify="center"
+                            className={styles.iconCont}
+                          >
+                            <div onClick={() => console.log("Edit")}>
+                              <EditIcon />
+                            </div>
+                          </Grid>
+                          <Grid
+                            container
+                            item
+                            xs={1}
+                            justify="center"
+                            className={styles.iconCont}
+                          >
+                            <div onClick={() => console.log("Delete")}>
+                              <DeleteIcon />
+                            </div>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </div>
                   </>
@@ -175,4 +221,4 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-export default ListOfServices;
+export default ListOfPersonalServices;

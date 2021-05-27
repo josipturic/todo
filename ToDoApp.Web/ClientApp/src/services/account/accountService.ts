@@ -8,7 +8,6 @@ export class AccountService {
     static SetAuthToken = async (token: string) => {
         window.localStorage.removeItem("authToken");
         var loginResponse = AccountService.parseAuthToken(token);
-        console.log(loginResponse);
         window.localStorage.setItem("authToken", loginResponse.token);
         return loginResponse;
     }

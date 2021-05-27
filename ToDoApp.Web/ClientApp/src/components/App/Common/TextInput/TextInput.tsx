@@ -18,6 +18,7 @@ interface IProps {
   disabled?: boolean;
   step?: number;
   multiline?: boolean;
+  rows?: number;
 }
 
 export const TextInput: React.FC<IProps> = (props) => (
@@ -37,7 +38,7 @@ export const TextInput: React.FC<IProps> = (props) => (
             ? "text-input error"
             : "text-input" + " " + styles.textInput + " " + styles.textArea
         }
-        rows={3}
+        rows={props.rows ? props.rows : 3}
       ></textarea>
     ) : (
       <input

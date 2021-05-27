@@ -1,4 +1,4 @@
-export interface IService {
+export interface IEditService {
     id: string,
     name: string,
     address: string,
@@ -6,5 +6,5 @@ export interface IService {
     description: string,
     contactEmail: string,
     contactPhoneNumber: string,
-    categoryIds: string[]
+    categoryIds: number[]
 }

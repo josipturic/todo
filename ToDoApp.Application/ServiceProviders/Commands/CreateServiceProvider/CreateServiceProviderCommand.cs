@@ -15,8 +15,6 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
         public string Oib { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
-        public string BusinessDescription { get; set; }
-        public string[] CategoryIds { get; set; }
         public class Handler : IRequestHandler<CreateServiceProviderCommand, Unit>
         {
             private readonly IIdentityService _identityService;
@@ -37,14 +35,6 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
                 serviceProvider.Oib = request.Oib;
                 serviceProvider.CompanyName = request.CompanyName;
                 serviceProvider.Address = request.Address;
-                serviceProvider.BusinessDescription = request.BusinessDescription;
-
-                //_context.TryUpdateManyToMany(serviceProvider.Categories,
-                //    request.CategoryIds.Select(c => new ServiceCategory
-                //    {
-                //        CategoryId = int.Parse(c),
-                //        ServiceProviderId = _currentUserService.UserId
-                //    }), x => x.CategoryId);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

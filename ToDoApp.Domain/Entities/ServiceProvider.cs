@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
@@ -11,7 +12,6 @@ namespace Domain.Entities
         {
             get => CompanyName;
         }
-        public string BusinessDescription { get; set; }
         public List<Service> Services { get; set; }
         public ServiceProvider()
         {

@@ -13,6 +13,9 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import Homepage from "./components/ServiceProvider/Homepage/Homepage";
 import NewService from "./components/ServiceProvider/NewService/NewService";
 import ListOfServices from "./components/ServiceProvider/ListOfServices/ListOfServices";
+import ListOfPersonalServices from "./components/ServiceProvider/ListOfPersonalServices/ListOfPersonalServices";
+import ServiceDetails from "./components/ServiceProvider/Service/ServiceDetails/ServiceDetails";
+import EditServiceDetails from "./components/ServiceProvider/Service/EditService/EditServiceDetails";
 
 const App = () => {
   return (
@@ -48,6 +51,24 @@ const App = () => {
             history={history}
             path={CLIENT.APP.SERVICE_PROVIDER.LIST_OF_SERVICES}
             component={ListOfServices}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES}
+            component={ListOfPersonalServices}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.SERVICE_PROVIDER.SERVICE}
+            component={ServiceDetails}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.SERVICE_PROVIDER.EDIT_SERVICE}
+            component={EditServiceDetails}
           />
         </Switch>
       </Store>

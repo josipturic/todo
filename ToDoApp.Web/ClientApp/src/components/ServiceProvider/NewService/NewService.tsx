@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styles from "./newservice.module.scss";
 import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Chip, FormControl, Grid, InputLabel } from "@material-ui/core";
+import { Chip, Grid } from "@material-ui/core";
 import TextInput from "../../App/Common/TextInput/TextInput";
 import { ICategory } from "../../../types/ICategory";
 import { IService } from "../../../types/IService";
@@ -37,7 +37,6 @@ const NewService: React.FC<IProps> = (props: IProps) => {
       ...service,
       categoryIds: selectedCategories.flatMap((o) => o.id.toString()),
     });
-    console.log(response);
   };
 
   const AddNewCategory = (category: ICategory) => {
@@ -48,7 +47,6 @@ const NewService: React.FC<IProps> = (props: IProps) => {
     } else {
       selected.push(category);
     }
-    console.log(selected);
     setSelectedCategories(selected);
   };
 
@@ -60,6 +58,7 @@ const NewService: React.FC<IProps> = (props: IProps) => {
         <div className={styles.form}>
           <Formik
             initialValues={{
+              id: "",
               name: "",
               address: "",
               servicePrice: "",

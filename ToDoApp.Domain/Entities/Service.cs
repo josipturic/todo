@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
-    public class Service
+    public class Service : AuditableEntity
     {
         public int Id { get; set; }
         public string ServiceProviderId { get; set; }
@@ -20,5 +21,6 @@ namespace Domain.Entities
             Categories = new List<ServiceCategory>();
         }
         public string Description { get; set; }
+        public int NumOfViews { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import styles from "./login.module.scss";
@@ -11,16 +11,29 @@ import { CLIENT } from "../../../constants/appRoutes";
 import { ILogin } from "../../../types/ILogin";
 import { LoginService } from "../../../services/login/loginService";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { LoginContext } from "../../../context/login/loginContext";
+import { AccountService } from "../../../services/account/accountService";
 
-interface IProps {}
+interface IProps {
+  history: any;
+}
 
 const Login: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
+  const loginContext = useContext(LoginContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
   }, [location]);
+
+  const Login = async (data: ILogin) => {
+    const response = await LoginService.Login(data);
+    var loginData = await AccountService.SetAuthToken(response);
+    loginContext.setLoginData(loginData);
+    console.log(response);
+    props.history.push(CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE);
+  };
 
   return (
     <>
@@ -36,7 +49,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
                 email: "",
                 password: "",
               }}
-              onSubmit={(values: ILogin) => LoginService.Login(values)}
+              onSubmit={(values: ILogin) => Login(values)}
               validationSchema={Yup.object().shape({
                 email: Yup.string().required("Obavezno"),
                 password: Yup.string().required("Obavezno"),

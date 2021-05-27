@@ -1,9 +1,11 @@
 ﻿using Application.Services.Commands.CreateService;
+using Application.Services.Commands.UpdateService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ToDoApp.Application.Services.Commands.UpdateNumOfViews;
 using ToDoApp.Application.Services.Models;
 using ToDoApp.Application.Services.Queries.GetAllServices;
 using ToDoApp.Application.Services.Queries.GetAllServicesForServiceProvider;
@@ -24,7 +26,7 @@ namespace Web.Controllers
             return NoContent();
         }
 
-        [HttpGet("/service-provider/{serviceProviderId}")]
+        [HttpGet("service-provider/{serviceProviderId}")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ServiceModel>>> GetServiceProviderServices(string serviceProviderId)
         {
@@ -43,6 +45,20 @@ namespace Web.Controllers
         public async Task<ActionResult<IEnumerable<ServiceModel>>> GetService(string serviceId)
         {
             return Ok(await Mediator.Send(new GetServiceQuery { ServiceId = int.Parse(serviceId)}));
+        }
+
+        [HttpGet("update-num-of-views/{serviceId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateNumOfViews(string serviceId)
+        {
+            return Ok(await Mediator.Send(new UpdateNumOfViewsCommand { ServiceId = int.Parse(serviceId) }));
+        }
+
+        [HttpPost("{serviceId}/update-service")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateService(string serviceId, UpdateServiceCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }

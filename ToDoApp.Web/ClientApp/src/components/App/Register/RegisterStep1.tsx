@@ -11,9 +11,7 @@ import { CLIENT } from "../../../constants/appRoutes";
 import { IRegister } from "../../../types/IRegister";
 import { RegisterService } from "../../../services/register/registerService";
 import { AccountService } from "../../../services/account/accountService";
-import { MetadataService } from "../../../services/metadata/metadataService";
 import { LoginContext } from "../../../context/login/loginContext";
-import { CategoryContext } from "../../../context/category/categoryContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 interface IProps {}
@@ -21,29 +19,17 @@ interface IProps {}
 const RegisterStep1: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
   const loginContext = useContext(LoginContext);
-  const categoryContext = useContext(CategoryContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document!.scrollingElement!.scrollTop = 0;
   }, [location]);
 
-  useEffect(() => {
-    async function getCategories() {
-      var response = await MetadataService.GetAllCategories();
-      categoryContext.setCategories(response!);
-    }
-
-    getCategories();
-  }, []);
-
   const RegisterUser = async (data: IRegister) => {
     var response = await RegisterService.InitialRegister(data);
     var loginData = await AccountService.SetAuthToken(response);
     loginContext.setLoginData(loginData);
-    setTimeout(function () {
-      history.push(CLIENT.APP.REGISTER_STEP_2);
-    }, 3000);
+    history.push(CLIENT.APP.REGISTER_STEP_2);
   };
 
   return (
