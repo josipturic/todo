@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ToDoApp.Application.Services.Commands.DeleteService;
 using ToDoApp.Application.Services.Commands.UpdateNumOfViews;
 using ToDoApp.Application.Services.Models;
 using ToDoApp.Application.Services.Queries.GetAllServices;
@@ -22,8 +23,8 @@ namespace Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create(CreateServiceCommand command)
         {
-            await Mediator.Send(command);
-            return NoContent();
+            var serviceId = await Mediator.Send(command);
+            return Ok(serviceId);
         }
 
         [HttpGet("service-provider/{serviceProviderId}")]
@@ -44,7 +45,7 @@ namespace Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ServiceModel>>> GetService(string serviceId)
         {
-            return Ok(await Mediator.Send(new GetServiceQuery { ServiceId = int.Parse(serviceId)}));
+            return Ok(await Mediator.Send(new GetServiceQuery { ServiceId = int.Parse(serviceId) }));
         }
 
         [HttpGet("update-num-of-views/{serviceId}")]
@@ -59,6 +60,13 @@ namespace Web.Controllers
         public async Task<IActionResult> UpdateService(string serviceId, UpdateServiceCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        [HttpDelete("{serviceId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> DeleteService(string serviceId)
+        {
+            return Ok(await Mediator.Send(new DeleteServiceCommand { Id = int.Parse(serviceId) }));
         }
     }
 }

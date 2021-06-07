@@ -6,7 +6,7 @@ import history from "../../constants/history";
 
 const PublicRoute = ({ component: Component, ...rest }: any) => (
   <div className={styles.PublicBackground}>
-    <div className={styles.polygon}></div>
+    {/* <div className={styles.polygon}></div> */}
     <div className={styles.container}>
       <PublicNavBar />
       <Route

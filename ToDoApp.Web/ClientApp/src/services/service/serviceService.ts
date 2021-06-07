@@ -52,12 +52,14 @@ export class ServiceService {
 
     static UpdateService = async (serviceId: string, service: IEditService): Promise<any> => {
         try {
-            console.log(serviceId);
-            console.log(service);
             var response = await serviceApi.updateService(serviceId, service);
             return response;
         }catch(err) {
             return null;
         }
+    }
+
+    static DeleteService = async (serviceId: string): Promise<any> => {
+        await serviceApi.deleteService(serviceId);
     }
 } 

@@ -13,6 +13,10 @@ namespace ToDoApp.Infrastructure.Persistance.Configuration
                 .WithMany(p => p.Services)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            builder
+                .HasMany(s => s.Categories)
+                .WithOne(s => s.Service)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

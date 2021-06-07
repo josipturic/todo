@@ -11,14 +11,15 @@ import { CLIENT } from "../../../constants/appRoutes";
 import { IRegister } from "../../../types/IRegister";
 import { RegisterService } from "../../../services/register/registerService";
 import { AccountService } from "../../../services/account/accountService";
-import { LoginContext } from "../../../context/login/loginContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { NotificationContext } from "../../../context/providers/notification/notificationProvider";
+import { NotificationType } from "../../../types/INotificationProps";
 
 interface IProps {}
 
 const RegisterStep1: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
-  const loginContext = useContext(LoginContext);
+  const notificationContext = useContext(NotificationContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -26,10 +27,17 @@ const RegisterStep1: React.FC<IProps> = (props: IProps) => {
   }, [location]);
 
   const RegisterUser = async (data: IRegister) => {
-    var response = await RegisterService.InitialRegister(data);
-    var loginData = await AccountService.SetAuthToken(response);
-    loginContext.setLoginData(loginData);
-    history.push(CLIENT.APP.REGISTER_STEP_2);
+    try {
+      var response = await RegisterService.InitialRegister(data);
+      await AccountService.SetAuthToken(response);
+      history.push(CLIENT.APP.REGISTER_STEP_2);
+    } catch (e) {
+      notificationContext.setSnackbar({
+        showSnackbar: true,
+        message: (e.message as string).replaceAll('"', ""),
+        type: NotificationType.Error,
+      });
+    }
   };
 
   return (

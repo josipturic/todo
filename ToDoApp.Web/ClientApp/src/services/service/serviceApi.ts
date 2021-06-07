@@ -23,5 +23,8 @@ export default
         },
         updateService(serviceId: string, service: IEditService): Promise<any>{
             return api.post(API.SERVICE_PROVIDER.SERVICE.UPDATE_SERVICE(serviceId), service)
+        },
+        deleteService(serviceId: string): Promise<any>{
+            return api.delete(API.SERVICE_PROVIDER.SERVICE.DELETE_SERVICE(serviceId));
         }
     };

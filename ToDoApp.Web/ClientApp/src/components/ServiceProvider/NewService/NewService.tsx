@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./newservice.module.scss";
 import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
@@ -9,24 +9,25 @@ import TextInput from "../../App/Common/TextInput/TextInput";
 import { ICategory } from "../../../types/ICategory";
 import { IService } from "../../../types/IService";
 import { ServiceService } from "../../../services/service/serviceService";
+import { MetadataService } from "../../../services/metadata/metadataService";
+import { CLIENT } from "../../../constants/appRoutes";
 
-interface IProps {}
+interface IProps {
+  history: any;
+}
 
 const NewService: React.FC<IProps> = (props: IProps) => {
-  const categories: ICategory[] = [
-    { id: 1, categoryName: "Nova kateg" },
-    { id: 2, categoryName: "Nova kategorija" },
-    { id: 3, categoryName: "Nova kategorija Nova kategorija" },
-    { id: 4, categoryName: "Nova kategorija Novo" },
-    { id: 5, categoryName: "Kategorija" },
-    { id: 6, categoryName: "Nova kgorija sada" },
-    { id: 7, categoryName: "Nova sada" },
-    { id: 8, categoryName: "Nova asdaaas" },
-    { id: 9, categoryName: "Nova" },
-    { id: 10, categoryName: "Ostalo" },
-  ];
-
+  const [categories, setCategories] = useState<ICategory[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    async function getCategories() {
+      var response = await MetadataService.GetAllCategories();
+      setCategories(response);
+    }
+
+    getCategories();
+  });
 
   const IsCategorySelected = (category: ICategory) => {
     return selectedCategories.some((o) => o.id == category.id);
@@ -37,6 +38,7 @@ const NewService: React.FC<IProps> = (props: IProps) => {
       ...service,
       categoryIds: selectedCategories.flatMap((o) => o.id.toString()),
     });
+    props.history.push(CLIENT.APP.SERVICE_PROVIDER.SERVICE_WITH_ID(response));
   };
 
   const AddNewCategory = (category: ICategory) => {

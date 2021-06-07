@@ -20,6 +20,7 @@ export const API = {
         `Service/update-num-of-views/${serviceId}`,
       UPDATE_SERVICE: (serviceId: string) =>
         `Service/${serviceId}/update-service`,
+      DELETE_SERVICE: (serviceId: string) => `Service/${serviceId}`,
     },
   },
 };

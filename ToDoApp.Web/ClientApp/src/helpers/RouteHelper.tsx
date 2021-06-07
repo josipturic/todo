@@ -18,4 +18,9 @@ export class RouteHelper {
     var parsedPath = path.split("/");
     return parsedPath[2];
   };
+
+  static GetServiceProviderId = (path: string): string => {
+    var parsedPath = path.split("/");
+    return parsedPath[2];
+  };
 }

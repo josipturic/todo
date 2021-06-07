@@ -8,7 +8,7 @@ using Application.Common.ExtensionMethods;
 
 namespace Application.Services.Commands.CreateService
 {
-    public class CreateServiceCommand : IRequest<Unit>
+    public class CreateServiceCommand : IRequest<int>
     {
         public string Name { get; set; }
         public string Address { get; set; }
@@ -17,7 +17,7 @@ namespace Application.Services.Commands.CreateService
         public string ContactEmail { get; set; }
         public string ContactPhoneNumber { get; set; }
         public string[] CategoryIds { get; set; }
-        public class Handler : IRequestHandler<CreateServiceCommand, Unit>
+        public class Handler : IRequestHandler<CreateServiceCommand, int>
         {
             private readonly IApplicationDbContext _context;
             private readonly ICurrentUserService _currentUserService;
@@ -28,7 +28,7 @@ namespace Application.Services.Commands.CreateService
                 _currentUserService = currentUserService;
             }
 
-            public async Task<Unit> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
             {
                 var service = new Service
                 {
@@ -54,7 +54,7 @@ namespace Application.Services.Commands.CreateService
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return Unit.Value;
+                return service.Id;
             }
         }
     }

@@ -216,7 +216,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 <ListItemText>Pregled svih usluga</ListItemText>
               </ListItem>
             )}
-            {serviceProvder && (
+            {/* {serviceProvder && (
               <ListItem
                 button
                 component={RouterLink}
@@ -228,7 +228,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 </ListItemIcon>
                 <ListItemText>Pregled osobnih podataka</ListItemText>
               </ListItem>
-            )}
+            )} */}
           </List>
           <Divider variant="middle" />
           <List>

@@ -1,13 +1,8 @@
 import React from "react";
-import LoginContextProvider from "./context/login/loginContext";
-import CategoryContextProvider from "./context/category/categoryContext";
+import { NotificationProvider } from "./context/providers/notification/notificationProvider";
 
 const Store = ({ children }: any) => {
-  return (
-    <LoginContextProvider>
-      <CategoryContextProvider>{children}</CategoryContextProvider>
-    </LoginContextProvider>
-  );
+  return <NotificationProvider>{children}</NotificationProvider>;
 };
 
 export default Store;

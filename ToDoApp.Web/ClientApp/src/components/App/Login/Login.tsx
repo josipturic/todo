@@ -11,8 +11,9 @@ import { CLIENT } from "../../../constants/appRoutes";
 import { ILogin } from "../../../types/ILogin";
 import { LoginService } from "../../../services/login/loginService";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { LoginContext } from "../../../context/login/loginContext";
 import { AccountService } from "../../../services/account/accountService";
+import { NotificationContext } from "../../../context/providers/notification/notificationProvider";
+import { NotificationType } from "../../../types/INotificationProps";
 
 interface IProps {
   history: any;
@@ -20,7 +21,7 @@ interface IProps {
 
 const Login: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
-  const loginContext = useContext(LoginContext);
+  const notificationContext = useContext(NotificationContext);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -28,11 +29,17 @@ const Login: React.FC<IProps> = (props: IProps) => {
   }, [location]);
 
   const Login = async (data: ILogin) => {
-    const response = await LoginService.Login(data);
-    var loginData = await AccountService.SetAuthToken(response);
-    loginContext.setLoginData(loginData);
-    console.log(response);
-    props.history.push(CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE);
+    try {
+      const response = await LoginService.Login(data);
+      await AccountService.SetAuthToken(response);
+      props.history.push(CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE);
+    } catch (e) {
+      notificationContext.setSnackbar({
+        showSnackbar: true,
+        message: (e.message as string).replaceAll('"', ""),
+        type: NotificationType.Error,
+      });
+    }
   };
 
   return (

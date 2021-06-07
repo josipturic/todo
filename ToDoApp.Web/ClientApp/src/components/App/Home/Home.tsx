@@ -1,23 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
 import { LinearProgress, Grid, Chip } from "@material-ui/core";
 import { ServiceService } from "../../../services/service/serviceService";
 import { IGetService } from "../../../types/IGetService";
 import { parseDate } from "../../../helpers/DateTimeHelper";
+import { CLIENT } from "../../../constants/appRoutes";
 
-interface IProps {}
+interface IProps {
+  history: any;
+}
 
-const ListOfServices: React.FC<IProps> = (props: IProps) => {
+const Home: React.FC<IProps> = (props: IProps) => {
   const [services, setServices] = useState<IGetService[]>([]);
 
   useEffect(() => {
-    async function GetServices() {
-      var fetchedServices = await ServiceService.GetAllServices();
-      setServices(fetchedServices);
+    async function GetAllServices() {
+      var response = await ServiceService.GetAllServices();
+      setServices(response);
     }
-    GetServices();
+
+    GetAllServices();
   }, []);
 
   const CropDescription = (description: string): string => {
@@ -29,8 +32,9 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
     return text;
   };
 
-  const UpdateNumOfViews = async (serviceId: string) => {
-    await ServiceService.UpdateNumOfViews(serviceId);
+  const OpenService = (serviceId: string) => {
+    ServiceService.UpdateNumOfViews(serviceId);
+    props.history.push(CLIENT.APP.USER.SERVICE_WITH_ID(serviceId));
   };
 
   const NormalizeDate = (date: string): string => {
@@ -38,8 +42,7 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
   };
 
   return (
-    <div className={styles.outerContainer}>
-      <ComponentName name="Pregled usluga" />
+    <div>
       <div className={styles.container}>
         <CardHeader
           title="Pregled svih usluga"
@@ -67,7 +70,7 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
                         direction="column"
                       >
                         <div
-                          onClick={() => UpdateNumOfViews(s.id)}
+                          onClick={() => OpenService(s.id)}
                           className={styles.somCont}
                         >
                           <Grid container item xs={12} spacing={1}>
@@ -173,4 +176,4 @@ const ListOfServices: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-export default ListOfServices;
+export default Home;

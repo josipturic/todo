@@ -1,6 +1,7 @@
 import React from "react";
 
 const serviceId = ":serviceId";
+const serviceProviderId = ":serviceProviderId";
 
 export const CLIENT = {
   APP: {
@@ -19,6 +20,14 @@ export const CLIENT = {
       EDIT_SERVICE_WITH_ID: (id: string) =>
         `/service-provider-service-edit/${id}`,
       PERSONAL_DATA: `/service-provider-personal-data`,
+    },
+    USER: {
+      SERVICE_PROVIDER_SERVICES: `/user-service-provider-services/${serviceProviderId}`,
+      SERVICE_PROVIDER_SERVICES_ID: (id: string) =>
+        `/user-service-provider-services/${id}`,
+      SERVICE: `/user-service-details/${serviceId}`,
+      SERVICE_WITH_ID: (id: string) => `/user-service-details/${id}`,
+      LIST_OF_ALL_SERVICES: (id: string) => `/user-service-provider-all`,
     },
   },
 };

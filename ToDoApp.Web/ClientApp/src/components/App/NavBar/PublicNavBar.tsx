@@ -25,14 +25,16 @@ const PublicNavBar: React.FC<IProps> = (props: IProps) => {
         </div>
       </div>
       <div className={styles.secondDiv}>
-        <div
-          style={{ marginRight: "11px" }}
-          className={styles.pointer}
-          onClick={() => history.push(CLIENT.APP.HOMEPAGE)}
-        >
-          <HomeIcon />
-          <p>Početna</p>
-        </div>
+        {!isHomepage && (
+          <div
+            style={{ marginRight: "11px" }}
+            className={styles.pointer}
+            onClick={() => history.push(CLIENT.APP.HOMEPAGE)}
+          >
+            <HomeIcon />
+            <p>Početna</p>
+          </div>
+        )}
         {(isRegister || isHomepage) && (
           <div
             className={styles.pointer}

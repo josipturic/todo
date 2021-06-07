@@ -1,4 +1,3 @@
-import { LoginContextProvider } from './../../context/login/loginContext';
 import React, { useContext } from 'react';
 import { ILoginResponse } from '../../types/ILoginResponse';
 import jwt_decode from "jwt-decode";

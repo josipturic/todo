@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { LoginContext } from "../../../context/login/loginContext";
 import styles from "./styles.module.scss";
 import ComponentName from "../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../App/Common/CardTitle/CardTitle";
@@ -17,18 +16,27 @@ interface IProps {
 }
 
 const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
-  const loginContext = useContext(LoginContext);
   const [services, setServices] = useState<IGetService[]>([]);
 
   useEffect(() => {
-    async function GetServices() {
-      var fetchedServices = await ServiceService.GetServiceProviderServices(
-        getUserId()
-      );
-      setServices(fetchedServices);
-    }
     GetServices();
   }, []);
+
+  async function GetServices() {
+    var fetchedServices = await ServiceService.GetServiceProviderServices(
+      getUserId()
+    );
+    setServices(fetchedServices);
+  }
+
+  const DeleteService = async (serviceId: string) => {
+    try {
+      await ServiceService.DeleteService(serviceId);
+      await GetServices();
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   const CropDescription = (description: string): string => {
     var length = description.length;
@@ -41,6 +49,10 @@ const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
 
   const NormalizeDate = (date: string): string => {
     return parseDate(date);
+  };
+
+  const EditService = (id: string) => {
+    props.history.push(CLIENT.APP.SERVICE_PROVIDER.EDIT_SERVICE_WITH_ID(id));
   };
 
   const OpenService = (id: string) => {
@@ -188,7 +200,7 @@ const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
                             justify="center"
                             className={styles.iconCont}
                           >
-                            <div onClick={() => console.log("Edit")}>
+                            <div onClick={() => EditService(s!.id)}>
                               <EditIcon />
                             </div>
                           </Grid>
@@ -199,7 +211,7 @@ const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
                             justify="center"
                             className={styles.iconCont}
                           >
-                            <div onClick={() => console.log("Delete")}>
+                            <div onClick={() => DeleteService(s!.id)}>
                               <DeleteIcon />
                             </div>
                           </Grid>

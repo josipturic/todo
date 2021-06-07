@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.ExtensionMethods;
 using Application.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services.Commands.UpdateService
 {
@@ -32,7 +33,7 @@ namespace Application.Services.Commands.UpdateService
 
             public async Task<Unit> Handle(UpdateServiceCommand request, CancellationToken cancellationToken)
             {
-                var service = await _context.Services.FindByKeyAsync(int.Parse(request.Id), cancellationToken);
+                var service = await _context.Services.Include(s => s.Categories).FirstOrDefaultAsync(o => o.Id == int.Parse(request.Id), cancellationToken);
 
                 service.Address = request.Address;
                 service.Name = request.Name;
@@ -41,8 +42,6 @@ namespace Application.Services.Commands.UpdateService
                 service.ContactPhoneNumber = request.ContactPhoneNumber;
                 service.ServiceProviderId = _currentUserService.UserId;
                 service.ServicePrice = request.ServicePrice;
-
-                await _context.Services.AddAsync(service);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

@@ -7,11 +7,6 @@ import loginApi from "./loginApi";
 export class LoginService {
 
     static Login = async (login: ILogin) => {
-        try {
-            var response = await loginApi.login(login);
-            return response;
-        } catch(err) {
-            console.log(err)
-        }
+        return await loginApi.login(login);
     }
 } 

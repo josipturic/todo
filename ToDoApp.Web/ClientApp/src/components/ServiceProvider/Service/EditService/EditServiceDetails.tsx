@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { LoginContext } from "../../../../context/login/loginContext";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import ComponentName from "../../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../../App/Common/CardTitle/CardTitle";
@@ -8,7 +7,6 @@ import { ServiceService } from "../../../../services/service/serviceService";
 import { MetadataService } from "../../../../services/metadata/metadataService";
 import { IGetService } from "../../../../types/IGetService";
 import { IEditService } from "../../../../types/IEditService";
-import { parseDate } from "../../../../helpers/DateTimeHelper";
 import { RouteHelper } from "../../../../helpers/RouteHelper";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -16,13 +14,14 @@ import TextInput from "../../../App/Common/TextInput/TextInput";
 import { Formik } from "formik";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
-import * as Yup from "yup";
 import { ICategory } from "../../../../types/ICategory";
+import { CLIENT } from "../../../../constants/appRoutes";
 
-interface IProps {}
+interface IProps {
+  history: any;
+}
 
 const EditServiceDetails: React.FC<IProps> = (props: IProps) => {
-  const loginContext = useContext(LoginContext);
   const [service, setService] = useState<IGetService>();
   const [allCategories, setAllCategories] = useState<ICategory[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
@@ -60,11 +59,20 @@ const EditServiceDetails: React.FC<IProps> = (props: IProps) => {
     setSelectedCategories(selected);
   };
 
+  const CancelUpdate = (serviceId: string) => {
+    props.history.push(CLIENT.APP.SERVICE_PROVIDER.SERVICE_WITH_ID(serviceId));
+  };
+
   const UpdateService = async (serviceId: string, values: IEditService) => {
     var response = await ServiceService.UpdateService(serviceId, {
       ...values,
       categoryIds: selectedCategories,
     });
+    if (response != null) {
+      props.history.push(
+        CLIENT.APP.SERVICE_PROVIDER.SERVICE_WITH_ID(serviceId)
+      );
+    }
   };
 
   return (
@@ -270,7 +278,7 @@ const EditServiceDetails: React.FC<IProps> = (props: IProps) => {
                               justify="center"
                               className={styles.iconCont}
                             >
-                              <div onClick={() => console.log("Edit")}>
+                              <div>
                                 <Tooltip title="Spremi promjene">
                                   <IconButton
                                     aria-label="save"
@@ -289,7 +297,7 @@ const EditServiceDetails: React.FC<IProps> = (props: IProps) => {
                               justify="center"
                               className={styles.iconCont}
                             >
-                              <div onClick={() => console.log("Delete")}>
+                              <div onClick={() => CancelUpdate(service.id)}>
                                 <Tooltip title="Odustani">
                                   <IconButton aria-label="cancel">
                                     <CancelIcon />

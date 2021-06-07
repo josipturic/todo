@@ -1,15 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { LoginContext } from "../../../../context/login/loginContext";
 import styles from "./styles.module.scss";
 import ComponentName from "../../../App/Common/ComponentName/ComponentName";
 import CardHeader from "../../../App/Common/CardTitle/CardTitle";
-import {
-  LinearProgress,
-  Grid,
-  Chip,
-  Tooltip,
-  IconButton,
-} from "@material-ui/core";
+import { LinearProgress, Grid, Chip } from "@material-ui/core";
 import { ServiceService } from "../../../../services/service/serviceService";
 import { IGetService } from "../../../../types/IGetService";
 import { parseDate } from "../../../../helpers/DateTimeHelper";
@@ -23,7 +16,6 @@ interface IProps {
 }
 
 const ServiceDetails: React.FC<IProps> = (props: IProps) => {
-  const loginContext = useContext(LoginContext);
   const [service, setService] = useState<IGetService>();
 
   useEffect(() => {
@@ -80,7 +72,12 @@ const ServiceDetails: React.FC<IProps> = (props: IProps) => {
                         <Grid container item xs={3}>
                           <p>Opis usluge</p>
                         </Grid>
-                        <Grid container item xs={7}>
+                        <Grid
+                          container
+                          item
+                          xs={7}
+                          className={styles.description}
+                        >
                           {service.description}
                         </Grid>
                       </Grid>
@@ -124,7 +121,7 @@ const ServiceDetails: React.FC<IProps> = (props: IProps) => {
                       </Grid>
                       <Grid container item xs={12} spacing={1}>
                         <Grid container item xs={3}>
-                          <p>Datum stvaranja</p>
+                          <p>Datum objave</p>
                         </Grid>
                         <Grid container item xs={7}>
                           {NormalizeDate(service!.lastModified)}
