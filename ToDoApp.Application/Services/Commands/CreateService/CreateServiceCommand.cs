@@ -38,7 +38,8 @@ namespace Application.Services.Commands.CreateService
                     ContactEmail = request.ContactEmail,
                     ContactPhoneNumber = request.ContactPhoneNumber,
                     ServiceProviderId = _currentUserService.UserId,
-                    ServicePrice = request.ServicePrice
+                    ServicePrice = request.ServicePrice,
+                    Deleted = false
                 };
 
                 await _context.Services.AddAsync(service);

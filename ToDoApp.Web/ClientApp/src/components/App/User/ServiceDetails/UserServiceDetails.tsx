@@ -33,6 +33,10 @@ const UserServiceDetails: React.FC<IProps> = (props: IProps) => {
     props.history.push(CLIENT.APP.USER.SERVICE_PROVIDER_SERVICES_ID(id));
   };
 
+  const SendEmail = () => {
+    window.open(`mailto:${service?.contactEmail}?subject=${service?.name}`);
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.container}>
@@ -65,6 +69,14 @@ const UserServiceDetails: React.FC<IProps> = (props: IProps) => {
                           </Grid>
                           <Grid container item xs={7}>
                             {service!.name}
+                          </Grid>
+                          <Grid container item xs={2}>
+                            <button
+                              className={styles.addButton}
+                              onClick={() => SendEmail()}
+                            >
+                              Pošalji email
+                            </button>
                           </Grid>
                         </Grid>
                         <Grid container item xs={12} spacing={1}>
@@ -123,7 +135,7 @@ const UserServiceDetails: React.FC<IProps> = (props: IProps) => {
                             <p>Datum objave</p>
                           </Grid>
                           <Grid container item xs={7}>
-                            {NormalizeDate(service!.lastModified)}
+                            {NormalizeDate(service!.created)}
                           </Grid>
                         </Grid>
                         <Grid container item xs={12} spacing={1}>
@@ -205,7 +217,7 @@ const UserServiceDetails: React.FC<IProps> = (props: IProps) => {
                                 OpenAllServices(service.serviceProvider.id)
                               }
                             >
-                              Ostali oglasi ovog oglašivača
+                              Svi oglasi ovog oglašivača
                             </button>
                           </Grid>
                         </Grid>

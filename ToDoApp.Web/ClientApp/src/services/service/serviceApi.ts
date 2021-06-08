@@ -15,6 +15,9 @@ export default
         getServiceProviderServices(serviceProviderId: string): Promise<IGetService[]> {
             return api.get(API.SERVICE_PROVIDER.SERVICE.GET_ALL_SERVICE_PROVIDER_SERVICES(serviceProviderId))
         },
+        getServiceProviderServicesForUser(serviceProviderId: string): Promise<IGetService[]> {
+            return api.get(API.SERVICE_PROVIDER.SERVICE.GET_ALL_SERVICE_PROVIDER_SERVICES_FOR_USER(serviceProviderId))
+        },
         getServiceById(serviceId: string): Promise<IGetService>{
             return api.get(API.SERVICE_PROVIDER.SERVICE.GET_SERVICE_BY_ID(serviceId))
         },

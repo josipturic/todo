@@ -4,6 +4,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Data;
 using System.Reflection;
 using System.Threading;
@@ -40,11 +41,11 @@ namespace Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedBy = _currentUserService.UserId;
-                        entry.Entity.Created = _dateTime.Now;
+                        entry.Entity.Created = DateTime.Now;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                        entry.Entity.LastModified = _dateTime.Now;
+                        entry.Entity.LastModified = DateTime.Now;
                         break;
                 }
             }

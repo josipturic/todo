@@ -17,16 +17,19 @@ interface IProps {
 
 const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
   const [services, setServices] = useState<IGetService[]>([]);
+  const [start, setStart] = useState<boolean>(false);
 
   useEffect(() => {
     GetServices();
   }, []);
 
   async function GetServices() {
+    setStart(true);
     var fetchedServices = await ServiceService.GetServiceProviderServices(
       getUserId()
     );
     setServices(fetchedServices);
+    setStart(false);
   }
 
   const DeleteService = async (serviceId: string) => {
@@ -75,151 +78,159 @@ const ListOfPersonalServices: React.FC<IProps> = (props: IProps) => {
             className={styles.formContainer}
             justify="center"
           >
-            {services.length > 0 ? (
+            {start == false ? (
               <>
-                {services.map((s, i) => (
+                {services.length != 0 ? (
                   <>
-                    <div key={i} className={styles.lgContainer}>
-                      <Grid
-                        container
-                        item
-                        xs={12}
-                        className={styles.serviceCont}
-                        justify="center"
-                        direction="column"
-                      >
-                        <div
-                          onClick={() => OpenService(s.id)}
-                          className={styles.somCont}
-                        >
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Naziv usluge</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.name}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Opis usluge</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {CropDescription(s.description)}
-                            </Grid>
-                          </Grid>
+                    {services.map((s, i) => (
+                      <>
+                        <div key={i} className={styles.lgContainer}>
                           <Grid
                             container
                             item
                             xs={12}
-                            spacing={1}
-                            style={{ marginTop: 5 }}
+                            className={styles.serviceCont}
+                            justify="center"
+                            direction="column"
                           >
-                            <Grid container item xs={4}>
-                              <p>Adresa</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.address}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Kontakt broj</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.contactPhoneNumber}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Kontakt email</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.contactEmail}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Cijena usluge</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.servicePrice}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Broj pregleda</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.numOfViews}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Datum stvaranja</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {NormalizeDate(s.lastModified)}
-                            </Grid>
-                          </Grid>
-                          <Grid container item xs={12} spacing={1}>
-                            <Grid container item xs={4}>
-                              <p>Kategorije</p>
-                            </Grid>
-                            <Grid container item xs={7}>
-                              {s.categories.map((value, i) => (
-                                <div
-                                  key={i}
-                                  className={
-                                    styles.chipCont +
-                                    " " +
-                                    styles.chipContSelected
-                                  }
-                                >
-                                  <Chip
-                                    label={value.categoryName}
-                                    clickable
-                                    color="primary"
-                                  />
+                            <div
+                              onClick={() => OpenService(s.id)}
+                              className={styles.somCont}
+                            >
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Naziv usluge</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.name}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Opis usluge</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {CropDescription(s.description)}
+                                </Grid>
+                              </Grid>
+                              <Grid
+                                container
+                                item
+                                xs={12}
+                                spacing={1}
+                                style={{ marginTop: 5 }}
+                              >
+                                <Grid container item xs={4}>
+                                  <p>Adresa</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.address}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Kontakt broj</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.contactPhoneNumber}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Kontakt email</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.contactEmail}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Cijena usluge</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.servicePrice}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Broj pregleda</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.numOfViews}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Datum stvaranja</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {NormalizeDate(s.created)}
+                                </Grid>
+                              </Grid>
+                              <Grid container item xs={12} spacing={1}>
+                                <Grid container item xs={4}>
+                                  <p>Kategorije</p>
+                                </Grid>
+                                <Grid container item xs={7}>
+                                  {s.categories.map((value, i) => (
+                                    <div
+                                      key={i}
+                                      className={
+                                        styles.chipCont +
+                                        " " +
+                                        styles.chipContSelected
+                                      }
+                                    >
+                                      <Chip
+                                        label={value.categoryName}
+                                        clickable
+                                        color="primary"
+                                      />
+                                    </div>
+                                  ))}
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <Grid
+                              container
+                              item
+                              xs={12}
+                              spacing={1}
+                              justify="center"
+                            >
+                              <Grid
+                                container
+                                item
+                                xs={1}
+                                justify="center"
+                                className={styles.iconCont}
+                              >
+                                <div onClick={() => EditService(s!.id)}>
+                                  <EditIcon />
                                 </div>
-                              ))}
+                              </Grid>
+                              <Grid
+                                container
+                                item
+                                xs={1}
+                                justify="center"
+                                className={styles.iconCont}
+                              >
+                                <div onClick={() => DeleteService(s!.id)}>
+                                  <DeleteIcon />
+                                </div>
+                              </Grid>
                             </Grid>
                           </Grid>
                         </div>
-                        <Grid
-                          container
-                          item
-                          xs={12}
-                          spacing={1}
-                          justify="center"
-                        >
-                          <Grid
-                            container
-                            item
-                            xs={1}
-                            justify="center"
-                            className={styles.iconCont}
-                          >
-                            <div onClick={() => EditService(s!.id)}>
-                              <EditIcon />
-                            </div>
-                          </Grid>
-                          <Grid
-                            container
-                            item
-                            xs={1}
-                            justify="center"
-                            className={styles.iconCont}
-                          >
-                            <div onClick={() => DeleteService(s!.id)}>
-                              <DeleteIcon />
-                            </div>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </div>
+                      </>
+                    ))}
                   </>
-                ))}
+                ) : (
+                  <div className={styles.noservices}>
+                    Nema usluga za prikaz.
+                  </div>
+                )}
               </>
             ) : (
               <div className={styles.progressCont}>

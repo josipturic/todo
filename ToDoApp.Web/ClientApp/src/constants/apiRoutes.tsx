@@ -15,6 +15,8 @@ export const API = {
       GET_ALL_SERVICES: `Service`,
       GET_ALL_SERVICE_PROVIDER_SERVICES: (serviceProviderId: string) =>
         `Service/service-provider/${serviceProviderId}`,
+      GET_ALL_SERVICE_PROVIDER_SERVICES_FOR_USER: (serviceProviderId: string) =>
+        `Service/user/${serviceProviderId}`,
       GET_SERVICE_BY_ID: (serviceId: string) => `Service/${serviceId}`,
       UPDATE_NUM_OF_VIEWS: (serviceId: string) =>
         `Service/update-num-of-views/${serviceId}`,

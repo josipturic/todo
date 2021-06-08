@@ -28,6 +28,7 @@ const ServiceDetails: React.FC<IProps> = (props: IProps) => {
   }, []);
 
   const NormalizeDate = (date: string): string => {
+    console.log(date);
     return parseDate(date);
   };
 
@@ -124,7 +125,7 @@ const ServiceDetails: React.FC<IProps> = (props: IProps) => {
                           <p>Datum objave</p>
                         </Grid>
                         <Grid container item xs={7}>
-                          {NormalizeDate(service!.lastModified)}
+                          {NormalizeDate(service!.created)}
                         </Grid>
                       </Grid>
                       <Grid container item xs={12} spacing={1}>

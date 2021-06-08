@@ -17,15 +17,11 @@ namespace Application.ServiceProviders.Commands.CreateServiceProvider
         public string Address { get; set; }
         public class Handler : IRequestHandler<CreateServiceProviderCommand, Unit>
         {
-            private readonly IIdentityService _identityService;
             private readonly IApplicationDbContext _context;
-            private readonly ICurrentUserService _currentUserService;
 
-            public Handler(IIdentityService identityService, IApplicationDbContext context, ICurrentUserService currentUserService)
+            public Handler(IApplicationDbContext context)
             {
-                _identityService = identityService;
                 _context = context;
-                _currentUserService = currentUserService;
             }
 
             public async Task<Unit> Handle(CreateServiceProviderCommand request, CancellationToken cancellationToken)

@@ -17,7 +17,7 @@ const RegisterStep2: React.FC<IProps> = (props: IProps) => {
 
   useEffect(() => {
     setTimeout(function () {
-      history.push(CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE);
+      history.push(CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES);
     }, 3000);
   }, []);
 

@@ -27,7 +27,7 @@ const NewService: React.FC<IProps> = (props: IProps) => {
     }
 
     getCategories();
-  });
+  }, []);
 
   const IsCategorySelected = (category: ICategory) => {
     return selectedCategories.some((o) => o.id == category.id);

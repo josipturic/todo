@@ -20,7 +20,7 @@ const ServiceProviderServices: React.FC<IProps> = (props: IProps) => {
       var serviceProviderId = await RouteHelper.GetServiceProviderId(
         window.location.pathname
       );
-      var response = await ServiceService.GetServiceProviderServices(
+      var response = await ServiceService.GetServiceProviderServicesForUser(
         serviceProviderId
       );
       setServices(response);
@@ -47,12 +47,19 @@ const ServiceProviderServices: React.FC<IProps> = (props: IProps) => {
     return parseDate(date);
   };
 
+  const getServiceProviderName = () => {
+    if (services[0] != undefined) {
+      return services[0].serviceProvider.fullName;
+    }
+    return "";
+  };
+
   return (
     <div>
       <div className={styles.container}>
         <CardHeader
-          title="Pregled svih usluga"
-          subtitle="Popis svih usluga u sustavu"
+          title={`Pregled usluga oglašivača ${getServiceProviderName()}`}
+          subtitle="Popis svih njegovih usluga u sustavu"
         />
         <div className={styles.form}>
           <Grid
@@ -138,7 +145,7 @@ const ServiceProviderServices: React.FC<IProps> = (props: IProps) => {
                               <p>Datum stvaranja</p>
                             </Grid>
                             <Grid container item xs={7}>
-                              {NormalizeDate(s.lastModified)}
+                              {NormalizeDate(s.created)}
                             </Grid>
                           </Grid>
                           <Grid container item xs={12} spacing={1}>

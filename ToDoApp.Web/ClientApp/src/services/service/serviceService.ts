@@ -32,6 +32,15 @@ export class ServiceService {
         }
     }
 
+    static GetServiceProviderServicesForUser = async (serviceProviderId): Promise<IGetService[]> => {
+        try {
+            var response = await serviceApi.getServiceProviderServicesForUser(serviceProviderId);         
+            return response;
+        } catch(err) {
+            return [];
+        }
+    }
+
     static GetServiceById = async (serviceId: string): Promise<IGetService | null> => {
         try {
             var response = await serviceApi.getServiceById(serviceId);         

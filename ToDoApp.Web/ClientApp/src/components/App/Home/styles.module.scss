@@ -47,21 +47,19 @@
   margin: 10px !important;
   border-radius: 10px;
   flex-direction: inherit !important;
-  cursor: pointer;
   box-shadow: 0 2px 2px 0 rgba(86, 73, 88, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
   padding: 20px;
 }
 
-.lgContainer {
-  width: 45%;
-  margin: 30px;
+.description {
+  white-space: pre-wrap;
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+.lgContainer {
+  cursor: pointer;
+  width: 45%;
+  margin: 30px;
 }
 
 .somCont {
@@ -119,4 +117,10 @@
   margin-left: 20px;
   margin-top: 30px;
   width: calc(100% - 20px);
+}
+
+.title {
+  margin-left: 10px;
+  margin-bottom: 20px;
+  font-size: 19px;
 }

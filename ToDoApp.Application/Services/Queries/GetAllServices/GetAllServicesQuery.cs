@@ -26,7 +26,7 @@ namespace ToDoApp.Application.Services.Queries.GetAllServices
 
             public async Task<IEnumerable<ServiceModel>> Handle(GetAllServicesQuery request, CancellationToken cancellationToken)
             {
-                var service = await _context.Services.Include(p => p.ServiceProvider).Include(s => s.Categories).ThenInclude(s => s.Category).ToListAsync();
+                var service = await _context.Services.Include(p => p.ServiceProvider).Include(s => s.Categories).ThenInclude(s => s.Category).Where(s => s.Deleted == false).ToListAsync();
                 return _mapper.Map<IEnumerable<ServiceModel>>(service);
             }
         }

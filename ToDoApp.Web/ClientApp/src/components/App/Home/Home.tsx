@@ -132,7 +132,7 @@ const Home: React.FC<IProps> = (props: IProps) => {
                               <p>Datum stvaranja</p>
                             </Grid>
                             <Grid container item xs={7}>
-                              {NormalizeDate(s.lastModified)}
+                              {NormalizeDate(s.created)}
                             </Grid>
                           </Grid>
                           <Grid container item xs={12} spacing={1}>

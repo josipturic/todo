@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using ToDoApp.Application.Services.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace ToDoApp.Application.Services.Queries.GetService
 {

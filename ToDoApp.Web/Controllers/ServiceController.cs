@@ -11,6 +11,7 @@ using ToDoApp.Application.Services.Models;
 using ToDoApp.Application.Services.Queries.GetAllServices;
 using ToDoApp.Application.Services.Queries.GetAllServicesForServiceProvider;
 using ToDoApp.Application.Services.Queries.GetService;
+using ToDoApp.Application.Services.Queries.GetServiceProviderServices;
 
 namespace Web.Controllers
 {
@@ -32,6 +33,13 @@ namespace Web.Controllers
         public async Task<ActionResult<IEnumerable<ServiceModel>>> GetServiceProviderServices(string serviceProviderId)
         {
             return Ok(await Mediator.Send(new GetAllServicesForServiceProviderQuery { ServiceProviderId = serviceProviderId }));
+        }
+
+        [HttpGet("user/{serviceProviderId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ServiceModel>>> GetServiceProviderServicesForUser(string serviceProviderId)
+        {
+            return Ok(await Mediator.Send(new GetServiceProviderServicesQuery { ServiceProviderId = serviceProviderId }));
         }
 
         [HttpGet]

@@ -22,5 +22,6 @@ namespace Domain.Entities
         }
         public string Description { get; set; }
         public int NumOfViews { get; set; }
+        public bool Deleted { get; set; } 
     }
 }

@@ -32,7 +32,7 @@ const Login: React.FC<IProps> = (props: IProps) => {
     try {
       const response = await LoginService.Login(data);
       await AccountService.SetAuthToken(response);
-      props.history.push(CLIENT.APP.SERVICE_PROVIDER.HOMEPAGE);
+      props.history.push(CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES);
     } catch (e) {
       notificationContext.setSnackbar({
         showSnackbar: true,

@@ -22,15 +22,15 @@ namespace ToDoApp.Application.Services.Commands.DeleteService
 
             public async Task<Unit> Handle(DeleteServiceCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Services
+                var service = await _context.Services
                     .FindAsync(request.Id);
 
-                if (entity is null)
+                if (service is null)
                 {
                     throw new NotFoundException(nameof(Service), request.Id);
                 }
 
-                _context.Services.Remove(entity);
+                service.Deleted = true;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

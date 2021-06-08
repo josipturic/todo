@@ -30,7 +30,7 @@ namespace ToDoApp.Application.Services.Queries.GetAllServicesForServiceProvider
 
             public async Task<IEnumerable<ServiceModel>> Handle(GetAllServicesForServiceProviderQuery request, CancellationToken cancellationToken)
             {
-                var service = await _context.Services.Include(s => s.ServiceProvider).Include(s => s.Categories).ThenInclude(c => c.Category).Where(s => s.ServiceProviderId == _currentUserService.UserId).ToListAsync();
+                var service = await _context.Services.Include(s => s.ServiceProvider).Include(s => s.Categories).ThenInclude(c => c.Category).Where(s => s.ServiceProviderId == _currentUserService.UserId && s.Deleted == false).ToListAsync();
                 return _mapper.Map<IEnumerable<ServiceModel>>(service);
             }
         }
