@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Enums;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +29,8 @@ namespace Application.ServiceProviders.Commands.CreateInitialServiceProvider
                 {
                     Email = request.Email,
                     CompanyName = request.CompanyName,
-                    Oib = request.Oib
+                    Oib = request.Oib,
+                    DateRegistered = DateTime.Now
                 };
 
                 await _identityService.CreateUserAsync(user, RoleEnum.ServiceProvider, request.Password);

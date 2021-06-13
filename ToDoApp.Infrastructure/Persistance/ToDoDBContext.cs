@@ -28,7 +28,6 @@ namespace Infrastructure.Persistence
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<RegisteredUser> Users { get; set; }
         public DbSet<ServiceProvider> ServiceProviders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Service> Services { get; set; }

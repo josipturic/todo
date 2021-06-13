@@ -1,6 +1,8 @@
 ﻿using Application.Common.Mappings;
 using Domain.Entities;
+using System;
 using System.Collections.Generic;
+using ToDoApp.Application.Services.Models;
 
 namespace Application.ServiceProviders.Models
 {
@@ -13,5 +15,8 @@ namespace Application.ServiceProviders.Models
         public string Address { get; set; }
         public bool TOSAccepted { get; set; }
         public string Oib { get; set; }
+        public DateTime DateRegistered { get; set; }
+        public List<ServiceModel> Services { get; set; }
+        public int NumOfServices { get; set; }
     }
 }

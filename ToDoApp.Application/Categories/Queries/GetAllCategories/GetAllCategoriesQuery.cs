@@ -4,9 +4,10 @@ using AutoMapper;
 using System.Threading.Tasks;
 using System.Threading;
 using ToDoApp.Application.Categories.Models;
-using AutoMapper.QueryableExtensions;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using AutoMapper.QueryableExtensions;
 
 namespace ToDoApp.Application.Categories.Queries.GetAllCategories
 {
@@ -25,7 +26,7 @@ namespace ToDoApp.Application.Categories.Queries.GetAllCategories
 
             public async Task<IEnumerable<CategoryModel>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Categories.ProjectTo<CategoryModel>(_mapper.ConfigurationProvider)
+                return await _context.Categories.Where(c => c.CategoryDeleted == false).ProjectTo<CategoryModel>(_mapper.ConfigurationProvider)
                .ToListAsync(cancellationToken);
             }
         }

@@ -25,7 +25,7 @@ namespace Application.ServiceProviders.Queries.GetServiceProviders
 
             public async Task<IEnumerable<ServiceProviderModel>> Handle(GetServiceProvidersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.ServiceProviders.ProjectTo<ServiceProviderModel>(_mapper.ConfigurationProvider)
+                return await _context.ServiceProviders.Include(s => s.Services).ProjectTo<ServiceProviderModel>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
             }
         }

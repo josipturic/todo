@@ -6,6 +6,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
+        public bool CategoryDeleted { get; set; }
         public List<ServiceCategory> Services { get; set; }
         public Category ()
         {

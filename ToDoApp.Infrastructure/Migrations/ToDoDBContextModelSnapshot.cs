@@ -107,6 +107,9 @@ namespace ToDoApp.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("CategoryDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
 
@@ -118,21 +121,25 @@ namespace ToDoApp.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            CategoryDeleted = false,
                             CategoryName = "Čišćenje kuća"
                         },
                         new
                         {
                             Id = 2,
+                            CategoryDeleted = false,
                             CategoryName = "Iznajmljivanje party kuća"
                         },
                         new
                         {
                             Id = 3,
+                            CategoryDeleted = false,
                             CategoryName = "Šetanje pasa"
                         },
                         new
                         {
                             Id = 4,
+                            CategoryDeleted = false,
                             CategoryName = "Pravljenje kolača"
                         });
                 });
@@ -362,6 +369,9 @@ namespace ToDoApp.Infrastructure.Migrations
 
                     b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateRegistered")
+                        .HasColumnType("datetime2");
 
                     b.HasDiscriminator().HasValue("ServiceProvider");
                 });

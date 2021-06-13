@@ -16,15 +16,10 @@ import ChevronRightIcon from "@material-ui/icons/MoreVert";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
-import RegisterUser from "@material-ui/icons/PersonAddOutlined";
-import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import LogOutIcon from "@material-ui/icons/ExitToAppOutlined";
 import clsx from "clsx";
-import LocalAtmIcon from "@material-ui/icons/LocalAtm";
-import MoneyIcon from "@material-ui/icons/Money";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useStyles } from "./NavBar.animations";
 import { useTheme } from "@material-ui/core/styles";
@@ -111,11 +106,11 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
         <Divider variant="middle" />
         <div>
           <List>
-            {admin && (
+            {/* {admin && (
               <ListItem
                 button
                 component={RouterLink}
-                to="/admin/dashboard"
+                to={CLIENT.APP.ADMIN.HOMEPAGE}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
@@ -123,58 +118,44 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 </ListItemIcon>
                 <ListItemText>Dashboard</ListItemText>
               </ListItem>
-            )}
+            )} */}
             {admin && (
               <ListItem
                 button
                 component={RouterLink}
-                to="/admin/list-of-users"
+                to={CLIENT.APP.ADMIN.LIST_OF_SERVICES}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
-                  <PeopleOutlineIcon />
-                </ListItemIcon>
-                <ListItemText>Pregled osoba</ListItemText>
-              </ListItem>
-            )}
-            {admin && (
-              <ListItem
-                button
-                component={RouterLink}
-                to="/admin/create-user"
-                onClick={() => closeNavBar()}
-              >
-                <ListItemIcon>
-                  <RegisterUser />
-                </ListItemIcon>
-                <ListItemText>Dodaj osobu</ListItemText>
-              </ListItem>
-            )}
-            {admin && (
-              <ListItem
-                button
-                component={RouterLink}
-                to="/admin/list-of-expenses"
-                onClick={() => closeNavBar()}
-              >
-                <ListItemIcon>
-                  <MoneyIcon />
+                  <ListAltIcon />
                 </ListItemIcon>
                 <ListItemText>Pregled usluga</ListItemText>
               </ListItem>
             )}
-
             {admin && (
               <ListItem
                 button
                 component={RouterLink}
-                to="/admin/new-expense"
+                to={CLIENT.APP.ADMIN.LIST_OF_SERVICE_PROVIDERS}
                 onClick={() => closeNavBar()}
               >
                 <ListItemIcon>
-                  <LocalAtmIcon />
+                  <ListAltIcon />
                 </ListItemIcon>
-                <ListItemText>Pregled davatelja usuluga</ListItemText>
+                <ListItemText>Pregled pružatelja usluga</ListItemText>
+              </ListItem>
+            )}
+            {admin && (
+              <ListItem
+                button
+                component={RouterLink}
+                to={CLIENT.APP.ADMIN.LIST_OF_CATEGORIES}
+                onClick={() => closeNavBar()}
+              >
+                <ListItemIcon>
+                  <ListAltIcon />
+                </ListItemIcon>
+                <ListItemText>Pregled kategorija</ListItemText>
               </ListItem>
             )}
             {serviceProvder && (
@@ -203,7 +184,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 <ListItemText>Pregled vaših usluga</ListItemText>
               </ListItem>
             )}
-            {serviceProvder && (
+            {/* {serviceProvder && (
               <ListItem
                 button
                 component={RouterLink}
@@ -215,7 +196,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                 </ListItemIcon>
                 <ListItemText>Pregled svih usluga</ListItemText>
               </ListItem>
-            )}
+            )} */}
             {/* {serviceProvder && (
               <ListItem
                 button

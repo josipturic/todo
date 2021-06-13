@@ -29,5 +29,16 @@ export const CLIENT = {
       SERVICE_WITH_ID: (id: string) => `/user-service-details/${id}`,
       LIST_OF_ALL_SERVICES: (id: string) => `/user-service-provider-all`,
     },
+    ADMIN: {
+      HOMEPAGE: `/admin-homepage`,
+      LIST_OF_SERVICES: `/admin-list-of-services`,
+      LIST_OF_SERVICE_PROVIDERS: `/admin-list-of-service-providers`,
+      LIST_OF_CATEGORIES: `/admin-list-of-categories`,
+      SERVICE: `/admin-service-details/${serviceId}`,
+      SERVICE_WITH_ID: (id: string) => `/admin-service-details/${id}`,
+      SERVICE_PROVIDER_SERVICES: `/admin-service-provider-services/${serviceProviderId}`,
+      SERVICE_PROVIDER_SERVICES_ID: (id: string) =>
+        `/admin-service-provider-services/${id}`,
+    },
   },
 };

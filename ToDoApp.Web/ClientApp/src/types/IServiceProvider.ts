@@ -5,4 +5,6 @@ export interface IServiceProvider {
     fullName: string
     id: string
     oib: string
+    dateRegistered: string
+    numOfServices: number
 }

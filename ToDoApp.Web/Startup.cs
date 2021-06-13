@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.Extensions.FileProviders;
 using Application.Common.Interfaces;
 using Application;
 using Infrastructure;
@@ -16,6 +15,10 @@ using Web.Common;
 using Web.Services;
 using Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
+using ToDoApp.Infrastructure.Persistance;
+using Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace ToDoApp
 {
@@ -33,19 +36,6 @@ namespace ToDoApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // It is not used in development environment
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("https://skipper.agency",
-                                                          "https://www.skipper.agency",
-                                                          "http://skipper.agency",
-                                                          "http://www.skipper.agency");
-                                  });
-            });
-
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddTransient<ICurrentUserService, CurrentUserService>();
@@ -59,10 +49,19 @@ namespace ToDoApp
 
             services.AddRazorPages();
 
+            services.AddSingleton(Configuration);
+
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
+            });
+
+            services.AddLogging(config =>
+            {
+                config.AddDebug();
+                config.AddConsole();
+                //etc
             });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -113,7 +112,7 @@ namespace ToDoApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -122,7 +121,7 @@ namespace ToDoApp
                 app.UseSwagger();
                 app.UseSwaggerUI(config =>
                 {
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "BillPayer API");
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoAPP API");
                 });
             }
             else
@@ -133,6 +132,8 @@ namespace ToDoApp
             }
             app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
+
+            ApplicationDbInitializer.SeedUsers(userManager);
 
             //app.UseStaticFiles(new StaticFileOptions
             //{

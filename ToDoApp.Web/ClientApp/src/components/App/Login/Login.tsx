@@ -14,6 +14,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { AccountService } from "../../../services/account/accountService";
 import { NotificationContext } from "../../../context/providers/notification/notificationProvider";
 import { NotificationType } from "../../../types/INotificationProps";
+import { getUserRole } from "../../../helpers/AccountHelper";
 
 interface IProps {
   history: any;
@@ -32,7 +33,15 @@ const Login: React.FC<IProps> = (props: IProps) => {
     try {
       const response = await LoginService.Login(data);
       await AccountService.SetAuthToken(response);
-      props.history.push(CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES);
+      var role = getUserRole();
+      console.log(role);
+      if (role == "ServiceProvider") {
+        props.history.push(
+          CLIENT.APP.SERVICE_PROVIDER.LIST_OF_PERSONAL_SERVICES
+        );
+      } else if (role == "Admin") {
+        props.history.push(CLIENT.APP.ADMIN.LIST_OF_SERVICES);
+      }
     } catch (e) {
       notificationContext.setSnackbar({
         showSnackbar: true,

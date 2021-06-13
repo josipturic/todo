@@ -19,6 +19,12 @@ import ServiceDetails from "./components/ServiceProvider/Service/ServiceDetails/
 import EditServiceDetails from "./components/ServiceProvider/Service/EditService/EditServiceDetails";
 import UserServiceDetails from "./components/App/User/ServiceDetails/UserServiceDetails";
 import ServiceProviderServices from "./components/App/User/ServiceProviderServices/ServiceProviderServices";
+import AdminHomepage from "./components/App/Admin/Homepage/AdminHomepage";
+import ListOfCategories from "./components/App/Admin/ListOfCategories/ListOfCategories";
+import ListOfServiceProviders from "./components/App/Admin/ListOfServiceProviders/ListOfServiceProviders";
+import AdminListOfServices from "./components/App/Admin/ListOfServices/ListOfServices";
+import AdminServiceDetails from "./components/App/Admin/ServiceDetails/ServiceDetails";
+import AdminServiceProviderServices from "./components/App/Admin/ListOfServiceProviderServices/ListOfSPServices";
 
 const App = () => {
   return (
@@ -83,6 +89,42 @@ const App = () => {
             history={history}
             path={CLIENT.APP.SERVICE_PROVIDER.EDIT_SERVICE}
             component={EditServiceDetails}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.HOMEPAGE}
+            component={AdminHomepage}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.LIST_OF_CATEGORIES}
+            component={ListOfCategories}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.LIST_OF_SERVICES}
+            component={AdminListOfServices}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.LIST_OF_SERVICE_PROVIDERS}
+            component={ListOfServiceProviders}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.SERVICE}
+            component={AdminServiceDetails}
+          />
+          <PrivateRoute
+            exact
+            history={history}
+            path={CLIENT.APP.ADMIN.SERVICE_PROVIDER_SERVICES}
+            component={AdminServiceProviderServices}
           />
         </Switch>
       </Store>

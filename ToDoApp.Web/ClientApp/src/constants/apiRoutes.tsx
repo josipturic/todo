@@ -8,6 +8,9 @@ export const API = {
   },
   METADATA: {
     GET_CATEGORIES: `Category`,
+    EDIT_CATEGORY: (categoryId: number) => `Category/${categoryId}`,
+    DELETE_CATEGORY: (categoryId: number) => `Category/${categoryId}`,
+    ADD_NEW_CATEGORY: `Category`,
   },
   SERVICE_PROVIDER: {
     SERVICE: {
@@ -24,5 +27,9 @@ export const API = {
         `Service/${serviceId}/update-service`,
       DELETE_SERVICE: (serviceId: string) => `Service/${serviceId}`,
     },
+  },
+  ADMIN: {
+    GET_SERVICE_PROVIDERS: `ServiceProvider`,
+    GET_DASHBOARD_DATA: `Admin/dashboard`,
   },
 };

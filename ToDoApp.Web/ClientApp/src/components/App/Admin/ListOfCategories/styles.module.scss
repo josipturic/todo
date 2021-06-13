@@ -1,0 +1,159 @@
+.container {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.formControl {
+  width: 100%;
+  margin: 0px !important;
+  div {
+    max-height: 40px;
+  }
+  label {
+    transform: translate(14px, 12px) scale(1);
+    font-style: italic;
+    font-size: 15px;
+  }
+}
+
+.paragraph {
+  margin-bottom: 0px !important;
+  font-size: 16px;
+}
+
+.chipCont {
+  display: inline;
+  div {
+    margin-right: 8px;
+    margin-bottom: 28px;
+  }
+  span {
+    text-decoration: none !important;
+    color: white !important;
+    font-size: 15px;
+    padding: 20px;
+  }
+}
+
+.chipContSelected div {
+  background-color: #1171ef;
+  background: linear-gradient(to right, #00a0bd 29%, #1171ef 100%);
+}
+
+.serviceCont {
+  border: 1px solid rgb(218, 218, 218);
+  margin: 10px !important;
+  border-radius: 10px;
+  flex-direction: inherit !important;
+  box-shadow: 0 2px 2px 0 rgba(86, 73, 88, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  padding: 20px;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.lgContainer {
+  width: 85%;
+  margin: 30px;
+}
+
+.somCont {
+  width: 100% !important;
+}
+
+.smallIconCont {
+  margin: 0px 10px;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.15);
+  }
+}
+
+.marginCont {
+  margin-bottom: 20px !important;
+}
+
+.iconCont {
+  :hover {
+    cursor: pointer;
+    color: #1171ef;
+    :first-child {
+      transform: scale(1.15);
+    }
+  }
+  margin-top: 10px;
+}
+
+.maincontainer {
+  width: 100% !important;
+  justify-content: flex-start !important;
+  display: flex !important;
+  margin-left: 30px !important;
+  margin-right: auto !important;
+  margin-top: 30px !important;
+
+  input {
+    height: 40px !important;
+  }
+}
+
+.formContainer {
+  width: 100% !important;
+  justify-content: center !important;
+  display: flex !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 30px !important;
+
+  input {
+    height: 40px !important;
+  }
+}
+
+.titleCat {
+  font-size: 19px;
+}
+
+.noMarginContainer {
+  justify-content: flex-start !important;
+  display: flex !important;
+  margin-left: 30px !important;
+}
+
+.progressCont {
+  width: 82%;
+  padding: 15px;
+  position: relative;
+}
+
+.addButton {
+  box-shadow: 0 2px 2px 0 rgba(86, 73, 88, 0.14),
+    0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  background-color: #9c27b0;
+  color: #fff;
+  border: none;
+  margin: 0.3125rem 1px;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  line-height: 1.42857143;
+  padding: 12px 30px;
+}
+
+.outerContainer {
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 30px;
+  width: calc(100% - 20px);
+}
+
+.title {
+  margin-left: 10px;
+  margin-bottom: 20px;
+  font-size: 19px;
+}
